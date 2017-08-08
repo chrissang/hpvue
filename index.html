@@ -1,0 +1,82 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, maximum-scale=1">
+    <link rel="stylesheet" type="text/css" href="/css/app.css">
+
+    <script>
+        var urlParams = location.search.split(/[?&]/).slice(1).map(function(paramPair) {
+            return paramPair.split(/=(.+)?/).slice(0, 2);
+        }).reduce(function (obj, pairArray) {
+            obj[pairArray[0]] = pairArray[1];
+            return obj;
+        }, {});
+        var testdate = urlParams.testdate;
+        var d = new Date();
+        var currentDate;
+        var mapping;
+
+        d.setHours(0, -d.getTimezoneOffset(), 0, 0); //removing the timezone offset.
+
+        if (testdate == null || testdate == undefined) {
+        	testdate = "";
+        	currentDate = d.toISOString().slice(0,10);
+        } else {
+        	currentDate = new Date(testdate).toISOString().slice(0,10);
+        };
+        //Template for all modules with sample data
+        if(currentDate >= new Date('2017-01-09').toISOString().slice(0,10)){
+            mappingOrder = {"A":{"large-feature-module":{"sections":[{"item":26276,"displayModuleOn":"small","image":{"customImage":{"small":"https://www.uncommongoods.com/images/hp/B/A1_LF_20170731_800px.jpg","large":"https://www.uncommongoods.com/images/hp/B/A1_LF_20170731_1680px.jpg"},"link":"/gifts/wedding-gifts?view=all","description":"pushpin_map_champagne_vase"},"headline":{"text":"Oh The Places They&#8217;ll Go","link":"/gifts/wedding-gifts?view=all","description":"places_theyll_go"},"cta":{"text":"shop wedding gifts","link":"/gifts/wedding-gifts?view=all","description":"shop_wedding_gifts"}}]}},"B":{"seo-link-module":{"seo1":{"section":{"text":"Shop by Recipient","link":"/gifts/by-recipient","description":"by_recipient"},"sections":[{"cta":{"text":"for him","link":"/for-him?view=all","description":"him"}},{"cta":{"text":"for her","link":"/for-her?view=all","description":"_her"}},{"cta":{"text":"kids","link":"/gifts/by-recipient/gifts-for-kids","description":"_kids"}},{"cta":{"text":"teens","link":"/gifts/by-recipient/gifts-for-teens-15-and-up","description":"_teens"}}]},"seo2":{"section":{"text":"Top Categories","link":"","description":""},"sections":[{"item":26494,"image":{"customImage":{"small":"https://www.uncommongoods.com/images/items/26400/26494_1_180px.jpg","large":""},"link":"/gifts?view=all","description":"Tea_Drops"},"cta":{"text":"gifts","link":"/gifts?view=all","description":"gifts"}},{"item":46804,"image":{"customImage":{"small":"https://www.uncommongoods.com/images/items/46800/46804_1_180px.jpg","large":""},"link":"/this-just-in","description":"Sunflower_Butterfly_Puddler"},"cta":{"text":"this just in","link":"/this-just-in","description":"this_just_in"}},{"item":41500,"image":{"customImage":{"small":"https://www.uncommongoods.com/images/items/41500/41500_1_180px.jpg","large":""},"link":"/sale","description":"Elements_Mini_Dishes"},"cta":{"text":"sale","link":"/sale","description":"sale"}},{"item":25425,"image":{"customImage":{"small":"https://www.uncommongoods.com/images/items/25400/25425_1_180px.jpg","large":""},"link":"/home-garden/home-decor?view=all","description":"Cloudy_Day_Toilet_Paper_Storage"},"cta":{"text":"home decor","link":"/home-garden/home-decor?view=all","description":"home_decor"}},{"item":46650,"image":{"customImage":{"small":"https://www.uncommongoods.com/images/items/46600/46650_1_180px.jpg","large":""},"link":"/gifts/by-price/gifts-under-50","description":"Live_Succulent_Plant_Necklace"},"cta":{"text":"Under $50","link":"/gifts/by-price/gifts-under-50","description":"under_50"}},{"item":45886,"image":{"customImage":{"small":"https://www.uncommongoods.com/images/items/45800/45886_1_180px.jpg","large":""},"link":"/gifts/by-price/gifts-under-25","description":"Birthstone_Wine_Bottle_Stopper"},"cta":{"text":"Under $25","link":"/gifts/by-price/gifts-under-25","description":"under_25"}}]}}},"C":{"small-feature-module":{"sections":[{"item":21505,"displayModuleOn":"medium","section":{"text":"","link":"","description":""},"image":{"customImage":{"small":"https://www.uncommongoods.com/images/items/21500/21505_1_180px.jpg","large":"https://www.uncommongoods.com/images/items/21500/21505_1_640px.jpg"},"link":"/gifts/wedding-gifts/for-the-couple","description":"anniversary_wine_box"},"headline":{"text":"With These Rings","link":"/gifts/wedding-gifts/for-the-couple","description":"with_these_rings"},"cta":{"text":"gifts for the couple","link":"/gifts/wedding-gifts/for-the-couple","description":"gifts_for_the_couple"}},{"item":41586,"displayModuleOn":"medium","section":{"text":"","link":"","description":""},"image":{"customImage":{"small":"https://www.uncommongoods.com/images/hp/B/C3_SF_20170807_340px.jpg","large":"https://www.uncommongoods.com/images/hp/B/C3_SF_20170807_640px.jpg"},"link":"/gifts/wedding-gifts/bridesmaid-gifts","description":"birthstone_mineral_soaps"},"headline":{"text":"Treat Your Team","link":"/gifts/wedding-gifts/bridesmaid-gifts","description":"treat_your_team"},"cta":{"text":"bridesmaid gifts","link":"/gifts/wedding-gifts/bridesmaid-gifts","description":"bridesmaid_gifts"}},{"item":43500,"displayModuleOn":"medium","section":{"text":"","link":"","description":""},"image":{"customImage":{"small":"https://www.uncommongoods.com/images/hp/B/C2_SF_20170807_340px.jpg","large":"https://www.uncommongoods.com/images/hp/B/C2_SF_20170807_640px.jpg"},"link":"/gifts/wedding-gifts/groomsmen-gifts","description":"personalized_cedar_wood_flask"},"headline":{"text":"For Your \"I Do\" Crew","link":"/gifts/wedding-gifts/groomsmen-gifts","description":"i_do_crew"},"cta":{"text":"groomsman gifts","link":"/gifts/wedding-gifts/groomsmen-gifts","description":"groomsman_gifts"}}]}},"D":{"collection-grid-module":{"displayModuleOn":"small","section":{"text":"","link":"","description":""},"headline":{"text":"What&#8217;s New","link":"/curated/brand-new-best-sellers","description":"whats_new"},"cta":{"text":"shop brand new best sellers","link":"/curated/brand-new-best-sellers","description":"brand_new_best_sellers"},"sections":[{"item":"46881","image":{"customImage":{"small":"https://www.uncommongoods.com/images/hp/B/D1_CG_20170807_340px.jpg","large":"https://www.uncommongoods.com/images/hp/B/D1_CG_20170807_640px.jpg"},"link":"/curated/brand-new-best-sellers","description":"Public_Radio_Single_Station_Tuner"}},{"item":"46644","image":{"customImage":{"small":"https://www.uncommongoods.com/images/hp/B/D2_CG_20170807_340px.jpg","large":"https://www.uncommongoods.com/images/hp/B/D2_CG_20170807_640px.jpg"},"link":"/curated/brand-new-best-sellers","description":"Popcorn_on_the_Cob"}},{"item":"46702","image":{"customImage":{"small":"https://www.uncommongoods.com/images/hp/B/D3_CG_20170807_340px.jpg","large":"https://www.uncommongoods.com/images/hp/B/D3_CG_20170807_640px.jpg"},"link":"/curated/brand-new-best-sellers","description":"Swan_Mug"}},{"item":"46620","image":{"customImage":{"small":"https://www.uncommongoods.com/images/hp/B/D4_CG_20170807_340px.jpg","large":"https://www.uncommongoods.com/images/hp/B/D4_CG_20170807_640px.jpg"},"link":"/curated/brand-new-best-sellers","description":"Pedigree_Poem_Tote_Bag"}},{"item":"46753","image":{"customImage":{"small":"https://www.uncommongoods.com/images/hp/B/D5_CG_20170807_340px.jpg","large":"https://www.uncommongoods.com/images/hp/B/D5_CG_20170807_640px.jpg"},"link":"/curated/brand-new-best-sellers","description":"Goddess_Talisman_Necklace"}},{"item":"46750","image":{"customImage":{"small":"https://www.uncommongoods.com/images/hp/B/D6_CG_20170807_340px.jpg","large":"https://www.uncommongoods.com/images/hp/B/D6_CG_20170807_640px.jpg"},"link":"/curated/brand-new-best-sellers","description":"Heart_Center_Garden_Stakes"}}]}},"E":{"text-link-module":{"section":{"text":"Shop by Occasion","link":"/gifts","description":"shop_by_occasion"},"sections":[{"item":22272,"displayModuleOn":"small","image":{"customImage":{"small":"","large":"https://www.uncommongoods.com/images/items/22200/22272_1_640px.jpg"},"link":"/gifts/wedding-gifts?view=all","description":"Intersection_of_Love_Photo_Print"},"cta":{"text":"wedding","link":"/gifts/wedding-gifts?view=all","description":"wedding"}},{"item":22400,"displayModuleOn":"small","image":{"customImage":{"small":"","large":"https://www.uncommongoods.com/images/items/22400/22400_1_640px.jpg"},"link":"/gifts/anniversary-gifts/anniversary-gifts","description":"The_Personalized_Anniversary_Journal"},"cta":{"text":"anniversary","link":"/gifts/anniversary-gifts/anniversary-gifts","description":"anniversary"}},{"item":40649,"displayModuleOn":"small","image":{"customImage":{"small":"","large":"https://www.uncommongoods.com/images/items/40600/40649_1_640px.jpg"},"link":"/gifts/birthday-gifts?view=all","description":"Party_Sprinkles"},"cta":{"text":"birthday","link":"/gifts/birthday-gifts?view=all","description":"birthday"}},{"item":25879,"displayModuleOn":"small","image":{"customImage":{"small":"","large":"https://www.uncommongoods.com/images/items/25800/25879_1_640px.jpg"},"link":"/sets/back-to-school","description":"Percy_the_Pencil_Porcupine"},"cta":{"text":"back to school","link":"/sets/back-to-school","description":"back_to_school"}},{"item":41851,"displayModuleOn":"small","image":{"customImage":{"small":"https://www.uncommongoods.com/images/hp/B/E5_TL_20170807_180px.jpg","large":"https://www.uncommongoods.com/images/hp/B/E5_TL_20170731_640px.jpg"},"link":"/gifts/baby-shower/baby-shower-gifts","description":"Growing_Belly_Tea_Towel"},"cta":{"text":"baby shower","link":"/gifts/baby-shower/baby-shower-gifts","description":"baby_shower"}},{"item":45111,"displayModuleOn":"small","image":{"customImage":{"small":"","large":"https://www.uncommongoods.com/images/items/45100/45111_1_640px.jpg"},"link":"/gifts/housewarming/housewarming-gifts","description":"Custom_Map_Serving_Tray"},"cta":{"text":"housewarming","link":"/gifts/housewarming/housewarming-gifts","description":"housewarming"}}]}},"F":{"button-link-double-module":{"section":{"text":"Shop by Interest","link":"/fun/by-interest","description":"shop_by_interest"},"sections":[{"item":25501,"displayModuleOn":"small","image":{"customImage":{"small":"https://www.uncommongoods.com/images/items/25500/25501_1_180px.jpg","large":"https://www.uncommongoods.com/images/items/25500/25501_1_640px.jpg"},"link":"/fun/by-interest/travel-gifts","description":"Cork_Globe"},"cta":{"text":"travel","link":"/fun/by-interest/travel-gifts","description":"travel"}},{"item":43729,"displayModuleOn":"small","image":{"customImage":{"small":"https://www.uncommongoods.com/images/items/43700/43729_1_180px.jpg","large":"https://www.uncommongoods.com/images/items/43700/43729_1_640px.jpg"},"link":"/fun/pets?view=all","description":"Water_Garden_Deluxe"},"cta":{"text":"pets","link":"/fun/pets?view=all","description":"pets"}},{"item":40787,"displayModuleOn":"small","image":{"customImage":{"small":"https://www.uncommongoods.com/images/items/40700/40787_1_180px.jpg","large":"https://www.uncommongoods.com/images/items/40700/40787_1_640px.jpg"},"link":"/fun/wine-dine/beer-gifts","description":"Beeropoly"},"cta":{"text":"beer","link":"/fun/wine-dine/beer-gifts","description":"beer"}},{"item":42159,"displayModuleOn":"small","image":{"customImage":{"small":"https://www.uncommongoods.com/images/items/42100/42159_1_180px.jpg","large":"https://www.uncommongoods.com/images/items/42100/42159_1_640px.jpg"},"link":"/fun/by-interest/geek-gifts","description":"Bioluminescent_Aquarium"},"cta":{"text":"geek","link":"/fun/by-interest/geek-gifts","description":"geek"}}]}},"G":{"extended-story-module":{"sections":[{"item":45136,"displayModuleOn":"small","section":{"text":"","link":"","description":""},"image":{"customImage":{"small":"https://www.uncommongoods.com/images/hp/B/G1_ES_20170807_640px.jpg","large":"https://www.uncommongoods.com/images/hp/B/G1_ES_20170807_1200px.jpg"},"link":"http://blog.uncommongoods.com/anniversary-gifts-by-year","description":"decadent_chocolate_quartet"},"headline":{"text":"Gift Guide: Ideas for Each Anniversary Year","link":"http://blog.uncommongoods.com/anniversary-gifts-by-year","description":"anniversary_gift_guide"},"copy":{"text":"The origins of the traditional anniversary gift list may be shrouded by the mysterious, misty mists of time, but you&#8217;re not really into shrouds. Our fresh guide to anniversary gifts by year covers the traditional, the modern, and, of course, the uncommon (Year Six is Candy, and Tamara and Daniel Herskovic's chocolate bars don't mess around).","link":"http://blog.uncommongoods.com/anniversary-gifts-by-year","description":"find_a_gift"},"cta":{"text":"find a gift","link":"http://blog.uncommongoods.com/anniversary-gifts-by-year","description":"find_a_gift"}}]}}}
+        };
+    </script>
+    <script src="/js/jquery-1.9.1.js"></script>
+    <script src="/node_modules/swiper/dist/js/swiper.min.js"></script>
+    <!-- <script src="/node_modules/underscore/underscore-min.js"></script> -->
+    <!-- <script src="/node_modules/knockout/build/output/knockout-latest.debug.js"></script> -->
+
+
+</head>
+<body>
+    <main class="main-exact" style="min-height:100vh">
+
+        <div id="hp_modules" class="row homePage-container">
+            <hp-container></hp-container>
+        </div>
+
+
+        <div class="row">
+            <div class="small-12 columns prefooterLine">
+    		<div class="row collapse">
+    			<div class="small-8 small-centered columns">
+    				<hr class="dottedSpacer">
+    			</div>
+    		</div>
+    	</div>
+        </div>
+    </main>
+
+
+
+    <script async src="/node_modules/responsively-lazy/responsivelyLazy.min.js"></script>
+    <script src="/js/vue.min.js"></script>
+    <script src="/js/hpVue.js"></script>
+    <script>
+        function onPromoClick(id, name, creative, pos) {
+            dataLayer.push({
+                'event' : 'promotionClick',
+                'ecommerce' : {
+                    'promoClick' : {
+                        'promotions' : [ {
+                            'id' : id,
+                            'name' : name,
+                            'creative' : creative,
+                            'position' : pos
+                        } ]
+                    }
+                }
+            });
+        };
+    </script>
+
+</body>
+</html>
