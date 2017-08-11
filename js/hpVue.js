@@ -215,7 +215,6 @@ Vue.component('text-link-module', {
         return {
             section: this.moduleData.section,
             textLinkModuleSections: this.moduleData.sections,
-            nonHiddenModuleSections: [],
             displayGroupViewPortSize: null
         };
     },
@@ -228,7 +227,42 @@ Vue.component('image-link-double-module', {
     template: "\n        <section class=\"image-link-double-module background-color-off-white\">\n            image-link-double-module\n        </section>\n    "
 });
 Vue.component('button-link-double-module', {
-    template: "\n        <section class=\"button-link-double-module background-color-off-white\">\n            button-link-double-module\n        </section>\n    "
+    mixins: [displayGroupMixin, displayOnMixin, productImgPathMixin, responsiveImageMixin],
+    props: ['moduleData', 'viewportSize'],
+    data: function () {
+        return {
+            section: this.moduleData.section,
+            buttonLinkDoubleModuleSections: this.moduleData.sections,
+            arrayContent1: null,
+            arrayContent2: null,
+            arrayContent3: null,
+            arrayContent4: null,
+            arrayContent5: null,
+            arrayContent6: null,
+            displayGroupViewPortSize: null
+        };
+    },
+    created: function () {
+        this.displayGroupViewPortSize = this.displayGroup(this.buttonLinkDoubleModuleSections);
+        this.arrayContent1 = this.buttonLinkDoubleModuleSections[0];
+        this.arrayContent2 = this.buttonLinkDoubleModuleSections[1];
+        this.arrayContent3 = this.buttonLinkDoubleModuleSections[2];
+        this.arrayContent4 = this.buttonLinkDoubleModuleSections[3];
+        this.arrayContent5 = this.buttonLinkDoubleModuleSections[4];
+        this.arrayContent6 = this.buttonLinkDoubleModuleSections[5];
+    },
+    methods: {
+        shouldStack: function (index) {
+            return this.viewportSize === 'xlarge' && this.buttonLinkDoubleModuleSections.length === 6 ? true : false;
+        },
+        showBtnContainerInside: function () {
+            return this.viewportSize != 'small' && this.buttonLinkDoubleModuleSections.length === 4 || this.viewPortSize() === 'medium' && this.buttonLinkDoubleModuleSections.length === 6 ? true : false;
+        },
+        showBtnContainerHanging: function () {
+            return this.viewportSize === 'small' || this.viewportSize === 'large' && this.buttonLinkDoubleModuleSections.length === 6 ? true : false;
+        }
+    },
+    template: "\n        <section v-if=\"displayOn(displayGroupViewPortSize, viewportSize)\" class=\"button-link-double-module background-color-white\">\n            <div class=\"row\">\n                <div class=\"small-12 columns\">\n                    <div class=\"row collapse\">\n                        <div class=\"small-8 medium-10 large-8 small-centered columns\">\n                            <hr class=\"dottedSpacer\">\n                        </div>\n                    </div>\n                </div>\n            </div>\n\n            <div v-if=\"section.text\" class=\"row\">\n                <div class=\"small-12 small-centered text-center columns\">\n                    <h2>\n                        <a class=\"a-secondary\" v-html=\"section.text\" v-bind:href=\"section.link\" v-bind:data-description=\"section.description\" v-bind:data-sectionDescription=\"section.description\" data-type=\"Section\"></a>\n                    </h2>\n                </div>\n            </div>\n\n\n\n\n\n            <div v-if=\"!shouldStack()\" class=\"row fullwidth\">\n                <div class=\"small-12 large-11 xlarge-10 xxlarge-8 large-centered columns\">\n                    <template v-for=\"(item, index) in buttonLinkDoubleModuleSections\">\n                        <div v-if=\"displayOn(displayModuleOn,viewportSize)\" v-bind:class=\"classNameBlockGrid(buttonLinkDoubleModuleSections) + ' productContainer'\">\n                            <div class=\"responsively-lazy preventReflow\">\n                                <a v-bind:href=\"item.image.link\" v-bind:data-description=\"item.image.description\" v-bind:data-itemNumber=\"item.item\" v-bind:data-cta=\"item.cta.text\" v-bind:data-sectionDescription=\"section.description\" data-type=\"Image\">\n                                    <img v-bind:src=\"item.image.customImage.large ? item.image.customImage.large : productImgPath(item.item,640)\" v-bind:data-srcset=\"responsiveImage(item.item, item.image.customImage.large, item.image.customImage.small)\" v-bind:alt=\"item.cta.text\"/>\n                                </a>\n\n                                <div v-if=\"showBtnContainerInside()\" class=\"btnContainerInside\">\n                                    <a v-bind:href=\"item.cta.link\" v-bind:data-description=\"item.cta.description\" v-bind:data-itemNumber=\"item.item\" v-bind:data-cta=\"item.cta.text\" v-bind:data-sectionDescription=\"section.description\" data-type=\"CTA\">\n                                        <button class=\"btn-secondary expand\" v-html=\"item.cta.text\"></button>\n                                    </a>\n                                </div>\n                            </div>\n\n                            <div v-if=\"showBtnContainerHanging()\" class=\"btnContainerHanging\">\n                                <a v-bind:href=\"item.cta.link\" v-bind:data-description=\"item.cta.description\" v-bind:data-itemNumber=\"item.item\" v-bind:data-cta'=\"item.item\" >\n\n                                \n                                'data-type': 'CTA', 'data-description': cta.description, 'data-itemNumber': item, 'data-cta': cta.text, 'data-sectionDescription': $parent.section.description }\">\n                                    <button class=\"btn-secondary expand\" data-bind=\"html: cta.text\"></button>\n                                </a>\n                            </div>\n\n                        </div>\n\n                    </template>\n                </div>\n            </div>\n\n\n\n\n        </section>"
 });
 Vue.component('seo-link-module', {
     mixins: [displayGroupMixin, displayOnMixin, productImgPathMixin, responsiveImageMixin, classNameBlockGridMixin],
