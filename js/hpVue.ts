@@ -331,11 +331,172 @@ Vue.component('small-feature-module', {
 })
 
 Vue.component('basic-story-module', {
+    mixins: [displayGroupMixin, displayOnMixin, productImgPathMixin, responsiveImageMixin],
+    props: ['moduleData', 'viewportSize'],
+    data: function() {
+        return {
+            basicStoryModulesSections: this.moduleData.sections,
+            displayGroupViewPortSize: null
+        }
+    },
+    created: function() {
+        this.displayGroupViewPortSize = this.displayGroup(this.basicStoryModulesSections);
+    },
+    methods: {
+        isEven: function(index) {
+            return index % 2 === 0 ? true : false
+        },
+        className: function(sectionData,viewportSize) {
+            var nonHiddenModuleSections = [];
+            if(viewportSize === 'large') {
+                sectionData.forEach((module,index) => {
+                    if (module.displayModuleOn === 'small' || module.displayModuleOn === 'medium' || module.displayModuleOn === 'large') {
+                        nonHiddenModuleSections.push(module.displayModuleOn)
+                    }
+                })
+                return {
+                    '2': 'large-6 columns',
+                    '3': 'large-4 columns',
+                    '4': 'large-6 columns'
+                }[nonHiddenModuleSections.length];
+            } else {
+                sectionData.forEach((module,index) => {
+                    if (module.displayModuleOn === 'small' || module.displayModuleOn === 'medium' || module.displayModuleOn === 'large' || module.displayModuleOn === 'xlarge') {
+                        nonHiddenModuleSections.push(module.displayModuleOn)
+                    }
+                })
+                return {
+                    '2': 'large-6 columns',
+                    '3': 'large-4 columns',
+                    '4': 'large-6 columns'
+                }[nonHiddenModuleSections.length];
+            }
+        }
+    },
     template: `
-        <section class="basic-story-module background-color-off-white">
-            basic-story-module
-        </section>
-    `
+        <section v-if="displayOn(displayGroupViewPortSize, viewportSize)" class="basic-story-module background-color-off-white">
+            <template v-if="viewportSize === 'small'">
+                <template v-for="(item, index) in basicStoryModulesSections">
+                    <div v-if="displayOn(item.displayModuleOn, viewportSize)" class="row container">
+                        <div v-if="item.section.text" class="small-12 text-center columns">
+                            <label class="body-small-caps-override">
+                                <a class="a-secondary" v-html="item.section.text" v-bind:href="item.section.link" v-bind:data-description="item.section.description" v-bind:data-itemNumber="item.item" v-bind:data-cta="item.cta.text" v-bind:data-sectionDescription="item.section.description" data-type="Section"></a>
+                            </label>
+                        </div>
+
+                        <div class="small-12 columns">
+                            <div class="row">
+                                <div class="small-10 small-centered text-center columns">
+                                    <a v-bind:attr="item.headline.link" v-bind:data-description="item.headline.description" v-bind:data-itemNumber="item.item" v-bind:data-cta="item.cta.text" v-bind:data-sectionDescription="item.section.description" data-type="Headline">
+                                        <h2 v-html="item.headline.text"></h2>
+                                    </a>
+                                    <a v-bind:href="item.image.link" v-bind:data-description="item.image.description" v-bind:data-itemNumber="item.item" v-bind:data-cta="item.cta.text" v-bind:data-sectionDescription="item.section.description" data-type="Image">
+                                        <div class="responsively-lazy preventReflow">
+                                            <img v-bind:data-srcset="responsiveImage(item.item, item.image.customImage.large, item.image.customImage.small)" v-bind:src="item.image.customImage.large ? item.image.customImage.large : productImgPath(item.item,640)" v-bind:alt="item.cta.text"/>
+                                        </div>
+                                    </a>
+                                    <a v-bind:href="item.cta.link" v-bind:data-description="item.cta.description" v-bind:data-itemNumber="item.item" v-bind:data-cta="item.cta.text" v-bind:data-sectionDescription="item.section.description" data-type="CTA">
+                                        <button class="btn-secondary expand" v-html="item.cta.text"></button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+            </template>
+
+            <template v-if="viewportSize === 'medium'">
+                <template v-for="(item, index) in basicStoryModulesSections">
+                    <div v-if="displayOn(item.displayModuleOn, viewportSize) && isEven(index)" class="row fullwidth">
+                        <div class="container">
+                            <div class="medium-7 columns">
+                                <div style="margin-top: -1.5rem; margin-left: -1.5rem;">
+                                    <a v-bind:href="item.image.link" v-bind:data-description="item.image.description" v-bind:data-itemNumber="item.item" v-bind:data-cta="item.cta.text" v-bind:data-sectionDescription="item.section.description" data-type="Image">
+                                        <div class="responsively-lazy preventReflow">
+                                            <img class="right" v-bind:data-srcset="responsiveImage(item.item, item.image.customImage.large, item.image.customImage.small)" v-bind:src="item.image.customImage.large ? item.image.customImage.large : productImgPath(item.item,360)" v-bind:alt="item.cta.text"/>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="medium-5 columns text-center">
+                                <div class="copyContainer">
+                                    <label v-if="item.section.text" class="body-small-caps-override">
+                                        <a class="a-secondary" v-html="item.section.text" v-bind:href="item.section.link" v-bind:data-description="item.section.description" v-bind:data-itemNumber="item.item" v-bind:data-cta="item.cta.text" v-bind:data-sectionDescription="item.section.description" data-type="Section"></a>
+                                    </label>
+                                    <a v-bind:href="item.headline.link" v-bind:data-description="item.headline.description" v-bind:data-itemNumber="item.item" v-bind:data-cta="item.cta.text" v-bind:data-sectionDescription="item.section.description" data-type="Headline">
+                                        <h2 v-html="item.headline.text"></h2>
+                                    </a>
+                                    <p class="body-small-override">
+                                        <a v-html="item.cta.text" v-bind:href="item.cta.link" v-bind:data-description="item.cta.description" v-bind:data-itemNumber="item.item" v-bind:data-cta="item.cta.text" v-bind:data-sectionDescription="item.section.description" data-type="CTA"></a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div v-if="displayOn(item.displayModuleOn, viewportSize) && !isEven(index)" class="row fullwidth">
+                        <div class="container">
+                            <div class="medium-5 columns text-center">
+                                <div class="copyContainer">
+                                    <label v-if="item.section.text" class="body-small-caps-override">
+                                        <a class="a-secondary" v-html="item.section.text" v-bind:href="item.section.link" v-bind:data-description="item.section.description" v-bind:data-itemNumber="item.item" v-bind:data-cta="item.cta.text" v-bind:data-sectionDescription="item.section.description" data-type="Section"></a>
+                                    </label>
+                                    <a v-bind:href="item.headline.link" v-bind:data-description="item.headline.description" v-bind:data-itemNumber="item.item" v-bind:data-cta="item.cta.text" v-bind:data-sectionDescription="item.section.description" data-type="Headline">
+                                        <h2 v-html="item.headline.text"></h2>
+                                    </a>
+                                    <p class="body-small-override">
+                                        <a v-html="item.cta.text" v-bind:href="item.cta.link" v-bind:data-description="item.cta.description" v-bind:data-itemNumber="item.item" v-bind:data-cta="item.cta.text" v-bind:data-sectionDescription="item.section.description" data-type="CTA"></a>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="medium-7 columns">
+                                <div style="margin-top: -1.5rem; margin-left: -1.5rem;">
+                                    <a v-bind:href="item.image.link" v-bind:data-description="item.image.description" v-bind:data-itemNumber="item.item" v-bind:data-cta="item.cta.text" v-bind:data-sectionDescription="item.section.description" data-type="Image">
+                                        <div class="responsively-lazy preventReflow">
+                                            <img class="right" v-bind:data-srcset="responsiveImage(item.item, item.image.customImage.large, item.image.customImage.small)" v-bind:src="item.image.customImage.large ? item.image.customImage.large : productImgPath(item.item,360)" v-bind:alt="item.cta.text"/>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+            </template>
+
+            <template v-if="viewportSize === 'large' || viewportSize === 'xlarge'">
+                <div class="row fullwidth">
+                    <div class="large-11 xlarge-10 xxlarge-8 large-centered columns">
+                        <div class="row">
+                            <template v-for="(item, index) in basicStoryModulesSections">
+                                <div v-if="displayOn(item.displayModuleOn, viewportSize)" v-bind:class="className(basicStoryModulesSections,viewportSize)">
+                                    <a v-bind:href="item.image.link" v-bind:data-description="item.image.description" v-bind:data-itemNumber="item.item" v-bind:data-cta="item.cta.text" v-bind:data-sectionDescription="item.section.description" data-type="Image">
+                                        <div class="responsively-lazy preventReflow">
+                                            <img class="right" v-bind:data-srcset="responsiveImage(item.item, item.image.customImage.large, item.image.customImage.small)" v-bind:src="item.image.customImage.large ? item.image.customImage.large : productImgPath(item.item,360)" v-bind:alt="item.cta.text"/>
+                                        </div>
+                                    </a>
+                                    <div class="row">
+                                        <div class="large-12 large-centered columns">
+                                            <div class="white-box-container text-center">
+                                                <label v-if="item.section.text" class="body-small-caps-override">
+                                                    <a class="a-secondary" v-html="item.section.text" v-bind:href="item.section.link" v-bind:data-description="item. section.description" v-bind:data-itemNumber="item.item" v-bind:data-cta="item.cta.text" v-bind:data-sectionDescription="item.section.description" data-type="Section"></a>
+                                                </label>
+
+                                                <a v-bind:href="item.headline.link" v-bind:data-description="item.headline.description" v-bind:data-itemNumber="item.item" v-bind:data-cta="item.cta.text" v-bind:data-sectionDescription="item.section.description" data-type="Headline">
+                                                    <h2 v-html="item.headline.text"></h2>
+                                                </a>
+                                                <p class="body-small-override">
+                                                    <a v-html="item.cta.text" v-bind:href="item.cta.link" v-bind:data-description="item.cta.description" v-bind:data-itemNumber="item.item" v-bind:data-cta="item.cta.text" v-bind:data-sectionDescription="item.section.description" data-type="CTA"></a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                </div>
+            </template>
+        </section>`
 })
 
 Vue.component('extended-story-module', {
@@ -349,7 +510,6 @@ Vue.component('extended-story-module', {
     },
     created: function() {
         this.displayGroupViewPortSize = this.displayGroup(this.extendedStoryModulesSections);
-        console.log('extendedStoryModulesSections ',this.extendedStoryModulesSections);
     },
     methods: {
         isEven: function(index) {
@@ -375,7 +535,7 @@ Vue.component('extended-story-module', {
                                     <div class="small-11 small-centered columns">
                                         <a v-bind:href="item.image.link" v-bind:data-description="item.image.description" v-bind:data-itemNumber="item.item" v-bind:data-cta="item.cta.text" v-bind:data-sectionDescription="item.section.description data-type="Image">
                                             <div class="responsively-lazy preventReflow itemPhoto">
-                                                <img v-bind:data-srcset="esponsiveImage(item.item, item.image.customImage.large, item.image.customImage.small)" v-bind:src="item.image.customImage.large ? item.image.customImage.large : productImgPath(item.item,640)" v-bind:alt="item.cta.text"/>
+                                                <img v-bind:data-srcset="responsiveImage(item.item, item.image.customImage.large, item.image.customImage.small)" v-bind:src="item.image.customImage.large ? item.image.customImage.large : productImgPath(item.item,640)" v-bind:alt="item.cta.text"/>
                                             </div>
                                         </a>
                                     </div>
@@ -588,14 +748,6 @@ Vue.component('collection-grid-module', {
         </section>`
 })
 
-Vue.component('carousel-module', {
-    template: `
-        <section class="carousel-module background-color-off-white">
-            carousel-module
-        </section>
-    `
-})
-
 Vue.component('text-link-module', {
     mixins: [displayGroupMixin, displayOnMixin, productImgPathMixin, responsiveImageMixin, classNameBlockGridMixin],
     props: ['moduleData', 'viewportSize'],
@@ -657,11 +809,49 @@ Vue.component('text-link-module', {
 })
 
 Vue.component('image-link-double-module', {
+    mixins: [displayGroupMixin, displayOnMixin, productImgPathMixin, responsiveImageMixin, classNameBlockGridMixin],
+    props: ['moduleData', 'viewportSize'],
+    data: function() {
+        return {
+            section: this.moduleData.section,
+            imageLinkDoubleModuleSections: this.moduleData.sections,
+            displayGroupViewPortSize: null
+        }
+    },
+    created: function() {
+        this.displayGroupViewPortSize = this.displayGroup(this.imageLinkDoubleModuleSections);
+    },
     template: `
-        <section class="image-link-double-module background-color-off-white">
-            image-link-double-module
-        </section>
-    `
+        <section v-if="displayOn(displayGroupViewPortSize, viewportSize)" class="image-link-double-module background-color-off-white">
+            <div class="row fullwidth waterColor">
+                <div class="small-12 large-11 xlarge-10 xxlarge-8 small-centered columns container">
+                    <div v-if="section.text" class="row">
+                        <div class="small-12 xlarge-10 xxlarge-8 text-center xlarge-centered columns">
+                            <h2>
+                                <a class="a-secondary" v-html="section.text" v-bind:href="section.link" v-bind:data-description="section.description" v-bind:data-sectionDescription="section.description" data-type="Section"></a>
+                            </h2>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="small-11 medium-12 small-centered columns">
+                            <template v-for="(item, index) in imageLinkDoubleModuleSections">
+                                <div v-if="displayOn(displayGroupViewPortSize, viewportSize)" v-bind:class="classNameBlockGrid(imageLinkDoubleModuleSections,viewportSize) + ' productContainer text-center'">
+                                    <div class="responsively-lazy preventReflow">
+                                        <a v-bind:href="item.image.link" v-bind:data-description="item.image.description" v-bind:data-itemNumber="item.item" v-bind:data-cta="item.cta.text" v-bind:data-sectionDescription="section.description" data-type="Image">
+                                            <img v-bind:data-srcset="responsiveImage(item.item, item.image.customImage.large, item.image.customImage.small)" v-bind:src="item.image.customImage.large ? item.image.customImage.large : productImgPath(item.item,640)" v-bind:alt="item.cta.text"/>
+                                        </a>
+                                    </div>
+                                    <h4>
+                                        <a class="a-secondary" v-html="item.cta.text" v-bind:href="item.cta.link" v-bind:data-description="item.cta.description" v-bind:data-itemNumber="item.item" v-bind:data-cta="item.cta.text" v-bind:data-sectionDescription="section.description" data-type="CTA"></a>
+                                    </h4>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>`
 })
 
 Vue.component('button-link-double-module', {
