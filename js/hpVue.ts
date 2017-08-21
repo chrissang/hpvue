@@ -103,6 +103,45 @@ var classNameBlockGridMixin = {
     }
 }
 
+var classNameMixin = {
+    methods: {
+        className: function(sectionData) {
+            var nonHiddenModuleSections = [];
+            if(this.viewportSize === 'large') {
+                sectionData.forEach((module,index) => {
+                    if (module.displayModuleOn === 'small' || module.displayModuleOn === 'medium' || module.displayModuleOn === 'large') {
+                        nonHiddenModuleSections.push(module.displayModuleOn)
+                    }
+                })
+                return {
+                    '2': 'large-6 columns',
+                    '3': 'large-4 columns',
+                    '4': 'large-6 columns'
+                }[nonHiddenModuleSections.length];
+            } else {
+                sectionData.forEach((module,index) => {
+                    if (module.displayModuleOn === 'small' || module.displayModuleOn === 'medium' || module.displayModuleOn === 'large' || module.displayModuleOn === 'xlarge') {
+                        nonHiddenModuleSections.push(module.displayModuleOn)
+                    }
+                })
+                return {
+                    '2': 'large-6 columns',
+                    '3': 'large-4 columns',
+                    '4': 'large-6 columns'
+                }[nonHiddenModuleSections.length];
+            }
+        }
+    }
+}
+
+var isEvenMixin = {
+    methods: {
+        isEven: function(index) {
+            return index % 2 === 0 ? true : false
+        }
+    }
+}
+
 Vue.component('large-feature-module', {
     mixins: [displayGroupMixin, displayOnMixin, productImgPathMixin],
     props: ['moduleData', 'viewportSize'],
@@ -181,7 +220,7 @@ Vue.component('large-feature-module', {
 })
 
 Vue.component('small-feature-module', {
-    mixins: [displayGroupMixin, displayOnMixin, productImgPathMixin, responsiveImageMixin],
+    mixins: [displayGroupMixin, displayOnMixin, productImgPathMixin, responsiveImageMixin, isEvenMixin, classNameMixin],
     props: ['moduleData', 'viewportSize'],
     data: function() {
         return {
@@ -191,37 +230,6 @@ Vue.component('small-feature-module', {
     },
     created: function() {
         this.displayGroupViewPortSize = this.displayGroup(this.smModulesSections);
-    },
-    methods: {
-        isEven: function(index) {
-            return index % 2 === 0 ? true : false
-        },
-        className: function(sectionData) {
-            var nonHiddenModuleSections = [];
-            if(this.viewportSize === 'large') {
-                sectionData.forEach((module,index) => {
-                    if (module.displayModuleOn === 'small' || module.displayModuleOn === 'medium' || module.displayModuleOn === 'large') {
-                        nonHiddenModuleSections.push(module.displayModuleOn)
-                    }
-                })
-                return {
-                    '2': 'large-6 columns',
-                    '3': 'large-4 columns',
-                    '4': 'large-6 columns'
-                }[nonHiddenModuleSections.length];
-            } else {
-                sectionData.forEach((module,index) => {
-                    if (module.displayModuleOn === 'small' || module.displayModuleOn === 'medium' || module.displayModuleOn === 'large' || module.displayModuleOn === 'xlarge') {
-                        nonHiddenModuleSections.push(module.displayModuleOn)
-                    }
-                })
-                return {
-                    '2': 'large-6 columns',
-                    '3': 'large-4 columns',
-                    '4': 'large-6 columns'
-                }[nonHiddenModuleSections.length];
-            }
-        }
     },
     template: `
         <section v-if="displayOn(displayGroupViewPortSize, viewportSize)" class="small-feature-module background-color-white" data-module-type="SF">
@@ -331,7 +339,7 @@ Vue.component('small-feature-module', {
 })
 
 Vue.component('basic-story-module', {
-    mixins: [displayGroupMixin, displayOnMixin, productImgPathMixin, responsiveImageMixin],
+    mixins: [displayGroupMixin, displayOnMixin, productImgPathMixin, responsiveImageMixin, isEvenMixin, classNameMixin],
     props: ['moduleData', 'viewportSize'],
     data: function() {
         return {
@@ -341,37 +349,6 @@ Vue.component('basic-story-module', {
     },
     created: function() {
         this.displayGroupViewPortSize = this.displayGroup(this.basicStoryModulesSections);
-    },
-    methods: {
-        isEven: function(index) {
-            return index % 2 === 0 ? true : false
-        },
-        className: function(sectionData,viewportSize) {
-            var nonHiddenModuleSections = [];
-            if(viewportSize === 'large') {
-                sectionData.forEach((module,index) => {
-                    if (module.displayModuleOn === 'small' || module.displayModuleOn === 'medium' || module.displayModuleOn === 'large') {
-                        nonHiddenModuleSections.push(module.displayModuleOn)
-                    }
-                })
-                return {
-                    '2': 'large-6 columns',
-                    '3': 'large-4 columns',
-                    '4': 'large-6 columns'
-                }[nonHiddenModuleSections.length];
-            } else {
-                sectionData.forEach((module,index) => {
-                    if (module.displayModuleOn === 'small' || module.displayModuleOn === 'medium' || module.displayModuleOn === 'large' || module.displayModuleOn === 'xlarge') {
-                        nonHiddenModuleSections.push(module.displayModuleOn)
-                    }
-                })
-                return {
-                    '2': 'large-6 columns',
-                    '3': 'large-4 columns',
-                    '4': 'large-6 columns'
-                }[nonHiddenModuleSections.length];
-            }
-        }
     },
     template: `
         <section v-if="displayOn(displayGroupViewPortSize, viewportSize)" class="basic-story-module background-color-off-white" data-module-type="BS">
@@ -500,7 +477,7 @@ Vue.component('basic-story-module', {
 })
 
 Vue.component('extended-story-module', {
-    mixins: [displayGroupMixin, displayOnMixin, productImgPathMixin, responsiveImageMixin],
+    mixins: [displayGroupMixin, displayOnMixin, productImgPathMixin, responsiveImageMixin, isEvenMixin],
     props: ['moduleData', 'viewportSize'],
     data: function() {
         return {
@@ -510,11 +487,6 @@ Vue.component('extended-story-module', {
     },
     created: function() {
         this.displayGroupViewPortSize = this.displayGroup(this.extendedStoryModulesSections);
-    },
-    methods: {
-        isEven: function(index) {
-            return index % 2 === 0 ? true : false;
-        }
     },
     template: `
         <section v-if="displayOn(displayGroupViewPortSize, viewportSize)" class="extended-story-module background-color-off-white" data-module-type="ES">
@@ -533,7 +505,7 @@ Vue.component('extended-story-module', {
                             <div class="small-12 text-center columns">
                                 <div class="row">
                                     <div class="small-11 small-centered columns">
-                                        <a v-bind:href="item.image.link" v-bind:data-description="item.image.description" v-bind:data-itemNumber="item.item" v-bind:data-cta="item.cta.text" v-bind:data-sectionDescription="item.section.description data-type="Image">
+                                        <a v-bind:href="item.image.link" v-bind:data-description="item.image.description" v-bind:data-itemNumber="item.item" v-bind:data-cta="item.cta.text" v-bind:data-sectionDescription="item.section.description" data-type="Image">
                                             <div class="responsively-lazy preventReflow itemPhoto">
                                                 <img v-bind:data-srcset="responsiveImage(item.item, item.image.customImage.large, item.image.customImage.small)" v-bind:src="item.image.customImage.large ? item.image.customImage.large : productImgPath(item.item,640)" v-bind:alt="item.cta.text"/>
                                             </div>
@@ -1139,7 +1111,7 @@ Vue.component('hp-container', {
         }
     },
     template: `
-        <div class="small-12 columns">
+        <div>
             <template v-for="(obj, index) in componentList" key="index">
                 <component :is="Object.keys(obj)[0]" :module-data="obj[Object.keys(obj)[0]]" :viewport-size="viewPort"></component>
             </template>
