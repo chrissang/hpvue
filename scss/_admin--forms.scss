@@ -1,0 +1,14 @@
+input[type="checkbox"].admin-super-check{
+    @extend input[type="checkbox"];
+    &+label::before{
+        width:4rem;
+        height:4rem;
+    }
+    &+label:not(.error):not(.super-check)::after{
+        width: 2.75rem;
+        height: 1.5rem;
+        border-width: 0 0 9px 9px;
+        top: 1rem;
+        left: .5rem;
+    }
+}

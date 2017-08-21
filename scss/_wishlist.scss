@@ -13,7 +13,7 @@ button.placeHolder{
 	}
 	& .editList+.shareList{
 		margin-left: .75rem;
-		padding-left: .75rem;		
+		padding-left: .75rem;
 	}
 	& .editList+.shareList{
 		border-left: 1px solid $primary;
@@ -155,11 +155,11 @@ h1 .inputGroup{
     &.empty img:nth-of-type(3) {
         margin-left:.75rem;
     }
-	&:not(.empty) h3{
-		overflow:hidden;
-		text-overflow:ellipsis;
-		white-space:nowrap;
-	}
+	// &:not(.empty) h3{
+	// 	overflow:hidden;
+	// 	text-overflow:ellipsis;
+	// 	white-space:nowrap;
+	// }
 	/*
 	&.editingList h3{
 		display:none;
@@ -268,7 +268,7 @@ h1 .inputGroup{
 	& button{
 		white-space:nowrap;
 		z-index:3;
-	}	
+	}
 	& .moving .recommendedImg{
 		background-color:$TBD;
 	}
@@ -300,7 +300,7 @@ h1 .inputGroup{
 		color: $active;
 		text-align: center;
 		display: block;
-		background-image: url("/images/frame/watercolorBG_1280_2_SM.jpg");
+		background-image: url("/images/watercolorBG_1280_2_SM.jpg");
 		background-size: cover;
 		background-position: center;
 		font-size:1.5rem;
@@ -321,6 +321,23 @@ h1 .inputGroup{
 		position: absolute;
 	}
 	*/
+}
+#wishlists {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: stretch;
+	.flexContainer {
+		flex: 0 0 auto;
+		display: flex;
+		align-items: stretch;
+		flex-direction: column;
+		justify-content: space-between;
+		height: 100%;
+		h3 {
+			height: auto;
+			word-wrap: break-word;
+		}
+	}
 }
 #wishlists:not(:empty){
 	margin-bottom:2rem;
@@ -356,7 +373,7 @@ h1 .inputGroup{
 	align-items:stretch;
 }
 /* need to do custom for personalize/add to cart combo since foundation breaks margin. it's okay since long term everything will be custom on mobile */
- @media #{$medium-up}{ 
+ @media #{$medium-up}{
 	#wishedItems button+button{
 		display:block;
 		height:0;
@@ -366,7 +383,7 @@ h1 .inputGroup{
 	}
 }
 /*
-@media only screen and (min-width: 30em) {	
+@media only screen and (min-width: 30em) {
 	.columns.wishlist, .columns.wished, .columns.wished.small-centered:last-child{
 		width:50%;
 		float:left!important;

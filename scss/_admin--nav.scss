@@ -1,0 +1,183 @@
+/* #leftNav {width: 200px;float: left;}
+		 */
+		.leftNavHeaderTitles{
+			padding: .75rem;
+		}
+		.tabs .secondary a, .tabs .secondary a:hover {
+		  font-size: .8125rem;
+		}
+		.tabs .secondary.tab-title a, .tabs .secondary.tab-title a:hover {
+		  padding-top: 0px;
+		  padding-right: 0.5rem;
+		  padding-bottom: 0px;
+		  padding-left: 0.5rem;
+		}
+		#headerBar {
+			width: 100%;
+			background-color: $offwhite;
+			height: 1.75rem;
+		}
+		#topNav .tabs {
+			margin-top: 0;
+		}
+		aside#admin-aside {
+			float: left;
+			padding: 0px;
+			width: 200px;
+			z-index: 2;
+		}
+		main#admin-main{
+			float:right;
+			width:calc(100% - 200px);
+		}
+		footer#admin-footer{
+			clear:both;
+			text-align: center;
+        }
+		.headerTabLabel{
+			float: right;
+			padding-right: 20px;
+		}
+		#logo{
+			float: left;
+		}
+		#leftNav li{
+			list-style-type: none;
+		}
+		.headerNavDiv h3{
+			padding-left: 15px;
+			background-color: $offwhite
+		}
+		.headerNavDiv a{
+			padding-left: 15px;			
+		}
+		.headerNavDiv{
+            border-style:solid;
+			border-width:0 2px 2px 2px;
+            border-color:$offwhite;
+		}
+
+
+/* rough version of some small screen UI */
+  button#adminMobile{display:none;}
+  @media only screen and (max-width:40em){
+    #admin-header #topNav,
+    #admin-header #logo,
+    #admin-header #headerDepartments,
+    aside#admin-aside,
+    main#admin-main{
+      width:100%;
+    }
+		#admin-header #headerDepartments{
+			clear:both;
+		}
+    #admin-header .tabs{
+      text-align:left;
+    }
+    #admin-header .tabs .tab-title::before,
+    #admin-header .tabs .tab-title::after{
+      display: none;
+    }
+    #admin-header .tabs .tab-title{
+      display: block;
+      width:100%;
+    }
+    #headerDepartmetns{
+        clear:both;
+    }
+    #headerDepartments,
+    aside#admin-aside{
+      display: none;
+    }    
+    .adminMobileMenuOpen #headerBar,
+    .adminMobileMenuOpen #headerDepartments,
+    .adminMobileMenuOpen~aside#admin-aside{
+      display: block;
+    }
+		.adminMobileMenuOpen~#admin-main,
+		.adminMobileMenuOpen~#admin-footer{
+			display: none;
+		}
+    button#adminMobile{display:inline-block;}
+    #admin-header #logo{width:calc(100% - 3rem)}
+  }
+
+	/*EXTRANET */
+#extranet-header{
+	border-bottom:1px solid $offwhite;
+}
+#extranet-header #categoryNav::after{
+	content:"";
+	width:100%;
+	display:inline-block;
+}
+	#extranet-header #categoryNav .panel.alignRight{
+		right:0%;
+		transform:none;
+		left:auto;
+	}
+	#extranet-header #categoryNav .panel.alignLeft{
+		transform:none;
+		left:0;
+	}	
+@media only screen and (min-width:40.0625em) and (max-width:64em){
+	#extranet-header #categoryNav span.nav-cat:last-child .panel{
+		right:0%;
+		transform:none;
+		left:auto;
+	}
+	#extranet-header #categoryNav span.nav-cat:first-child .panel{
+		transform:none;
+		left:0;
+	}	
+}
+@media only screen and (min-width:40.35em){
+	#extranet-header #categoryNav .panel{
+		position:absolute;
+		top:1.7rem;
+		min-width:10.375rem;
+		left: 50%;
+		transform: translateX(-50%);
+		z-index:1;
+	}
+}
+$panelPadding:.5rem;
+$panelElementPadding:.875rem;
+#extranet-header #categoryNav .panel{
+	padding:$panelPadding
+}
+#extranet-header #categoryNav .panel a{
+	/*padding:.375rem .25rem 0;*/
+	padding:0 .25rem;
+	white-space:nowrap;
+}
+#extranet-header #categoryNav .panel a.nav-sub{
+	padding-right:1em;
+}
+#extranet-header #categoryNav .panel a.nav-sub+a.nav-sub{
+	border-top: 2px solid $offwhite;
+}
+#extranet-header #categoryNav .panel a.nav-sub{
+	padding-top: $panelElementPadding;
+	padding-bottom: $panelElementPadding;
+}
+#extranet-header #categoryNav .panel a.nav-sub:first-child(){
+	padding-top:$panelElementPadding - $panelPadding;
+}
+#extranet-header #categoryNav .panel a.nav-sub:last-child(){
+	padding-bottom:$panelElementPadding - $panelPadding;
+}
+#extranet-header #categoryNav .currentlySelected{
+	font-weight:bold;
+	color:#048D8A!important;
+}
+@media only screen and (max-width:40em){
+	#extranet-header #categoryNav span.nav-cat{
+		position: relative;
+	}
+	#extranet-header #categoryNav span.nav-cat::after {
+			position: absolute;
+			right: 0;
+			top:0;
+	}
+}

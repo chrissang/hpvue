@@ -1,0 +1,42 @@
+@media only screen and (max-width: 40em) {
+  /* line 1, ../scss/_borderfreemodal.scss */
+  #tinymask,
+  #tinybox {
+    display: none !important;
+  }
+}
+
+/* line 7, ../scss/_borderfreemodal.scss */
+#tinycontent {
+  box-sizing: content-box;
+}
+
+/* line 10, ../scss/_borderfreemodal.scss */
+#tinycontent #button {
+  background: none;
+}
+
+/* line 13, ../scss/_borderfreemodal.scss */
+#tinycontent #button button {
+  background-color: #048D8A;
+  font-size: 1rem;
+}
+
+/* line 17, ../scss/_borderfreemodal.scss */
+#tinycontent #button button::after,
+#tinycontent #button button::before {
+  display: none;
+}
+
+/* line 21, ../scss/_borderfreemodal.scss */
+#tinycontent a#closeButton {
+  background: none !important;
+  text-indent: 0 !important;
+  margin-right: 10px;
+}
+
+/* line 26, ../scss/_borderfreemodal.scss */
+#tinycontent #closeButton::before {
+  content: "E" !important;
+  font-family: "UncommonGoods" !important;
+}

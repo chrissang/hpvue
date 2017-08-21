@@ -6,29 +6,18 @@ $headerBarHeight:1.75rem;
 			background: $offwhite-lightened none repeat-y scroll center top !important;
 		}
 	}
-	main,
-	header~*{
-		overflow-x:hidden;		
-	}
 	div#boxes div#dialog{
 		display:none!important
 	} 
-
+	$countdownHeight : 35px;
 	div#frame{
-		/*max-width:62.5rem;*/
 		margin:auto;
 		background-color:#FFF;
 		@media #{$medium-up} {
 			.hasCountdown &{
-				padding-top:2.5rem!important;
+				padding-top:$countdownHeight!important; /* might be able to do transformY and with a CSS transition? */
 			}
-		}
-		/* maybe remove? */
-		/*
-		@media #{$large-up} {
-			padding:0 10px;
-		}
-		*/		
+		}	
 		box-sizing:content-box;
 		.fullwidth &{
 			width:100%;
@@ -45,25 +34,6 @@ $headerBarHeight:1.75rem;
 	div#frame main *,
 	div#frame footer *{
 		box-sizing:border-box;
-	}
-	@media #{$medium-up} {
-		div#frame::before{
-			content:'';
-			position:absolute;
-			top:0;
-			left:0;
-			right:0;
-			height:$headerBarHeight; /* pull in headerheight */
-			/*background-image:url('/images/frame/borderlinetexture-offwhite-lg.png');*/
-			border-top:$headerBarHeight solid $offwhite;
-			background-position:top center;
-			background-repeat:repeat-x;
-			background-size:50%;
-			box-sizing:content-box;
-			.hasCountdown &{
-				top:2.5rem;
-			}
-		}
 	}
 	body.fullwidth div#frame,
 	body.responsive div#frame{
@@ -93,9 +63,10 @@ main > #mainContent{
 }	
 /* responsive header */
 	#countdownHeader{
-		background-color:$active-secondary;
-		height:2.5rem;
-		color:$primary;
+		background:$active;
+		background: linear-gradient(to right, $active , $active-dark-mix);
+		height:$countdownHeight;
+		color:$white;
 		text-align:center;
 		position:fixed;
 		left:0;
@@ -107,35 +78,38 @@ main > #mainContent{
 			display:none;
 		}
 		& *{
-			display:inline;
-			font-weight:bold;
-			line-height:2.5rem;
+			line-height:$countdownHeight;
+			color:$white;
 		}
-		& #countdownEvent span,
-		& #countdownTime{
-			color:$white!important;
+		& .icon-truck{
+			margin-left:10px;
 		}
 		& #countdownTime{
-			font-family: 'Source Code Pro', monospace;
+			font-family: 'Droid Sans Mono', monospace;
+			margin-left:10px;
 		}
 	}
 	
 
 	
 $headerBottomMargin: 0;	
-	header{
+	header#site-header{
 		background-color:$white;
 		border-bottom:1px solid $offwhite;
 		margin-bottom:$headerBottomMargin;
 	}
 	#headerBar{
-		/*background-color:$offwhite;*/
+		width:100%;
+		background-color:$offwhite;
 		height:$headerBarHeight;
 		@media #{$medium-up} {			
 			margin-bottom:1rem;
 		}
 		/* give a height as variable */
 		@media #{$small-only} {
+			& > .row > .columns{
+				padding:0;
+			}
 			& .right .headerTabContainer{
 				float:left;
 				background-color:$offwhite;
@@ -225,8 +199,7 @@ $headerBottomMargin: 0;
 			padding:0;
 		}
 		& hr{
-			margin-left:-1.125rem;
-			margin-right:-1.125rem;
+			margin:1.25rem -1.125rem;
 			border-color:$white;
 			border-width:1px;
 			@media #{$medium-up} {
@@ -234,82 +207,6 @@ $headerBottomMargin: 0;
 			}
 		}
 	}
-$smallScrenObnoxHeight:4rem;
-
-#obnox{
-	/*height:$smallScrenObnoxHeight;*/
-	width:100%;
-	overflow:hidden;
-	@media #{$small-only} {
-		background-color: $brand-primary;
-	}
-	@media #{$medium-up} {
-		width:auto;
-		height: 1.75rem;		
-		position: absolute;
-		right: 0px;
-		
-		animation: showMedObnox 1s;
-	}
-} /* animate obnox, NOT obnox h3 */
-
-#obnox h3{	
-	background-color: $brand-primary;
-	color:$white!important;
-	text-align:center;
-	margin-bottom:0;
-	padding:.75rem;
-	
-	@media #{$medium-up} {
-		text-align:left;
-		padding:0 .75rem;
-		/*height: 1.75rem;*/
-		line-height: 1.75rem;
-
-		white-space: nowrap;
-		
-		
-		
-	}
-}
-#obnox.hiding{
-	@media #{$small-only} {
-		animation: hideSmObnox 1s;
-	}	
-	@media #{$medium-up} {
-		animation: hideMedObnox 1s;
-	}
-}
-/* Chrome, Safari, Opera */
-@-webkit-keyframes hideSmObnox {
-    from {max-height: $smallScrenObnoxHeight;}
-    to {max-height: 0;}
-}
-
-@keyframes hideSmObnox {
-    from {max-height: $smallScrenObnoxHeight;}
-    to {max-height: 0px;}
-}
-/* Chrome, Safari, Opera */
-@-webkit-keyframes hideMedObnox {
-    from {max-width: 600px;}
-    to {max-width: 0;}
-}
-
-@keyframes hideMedObnox {
-    from {max-width: 600px;}
-    to {max-width: 0px;}
-}
-/* Chrome, Safari, Opera */
-@-webkit-keyframes showMedObnox {
-    from {max-width: 0;}
-    to {max-width: 600px;}
-}
-
-@keyframes showMedObnox {
-    from {max-width: 0px;}
-    to {max-width: 600px;}
-}
 	#loggedInContent{
 		@media #{$medium-up} {
 			padding:0;
@@ -687,10 +584,10 @@ svg .logo-green{
 		border-top-left-radius:0;
 		border-bottom-left-radius:0;
 		*/
-		min-width:0;
+/*		min-width:0;*/
 		margin-bottom:0;
-		width:$button-small-size;
-		height:$button-small-size;
+/*		width:$button-small-size;
+		height:$button-small-size;*/
 		@media #{$small-only} {
 			width:$button-medium-size;
 			height:$button-medium-size;
@@ -1158,6 +1055,28 @@ nav#categoryNav{
 	display:inline-block;
 	height:0;
 }
+#categoryNav.navHover .nav-cat {
+	padding-bottom: 0.8rem;
+	&:after {
+		bottom: -5px;
+	}
+	& > a.nav-link {
+		background: none!important;
+		color: $secondary;
+		transition:none!important;
+		&:hover {
+			color: $active;
+			font-weight: bold;
+		}
+	}
+	&.opened {
+		& > a.nav-link {
+			color: $active;
+			font-weight: bold;
+		}
+	}
+	
+}
 #categoryNav .nav-cat:hover{
 	cursor:pointer;
 	text-decoration:none;
@@ -1167,24 +1086,25 @@ nav#categoryNav{
 }
 main{
     margin-top:.75rem;
+	display:block;
 }
 .main-extra{
 	background-position:bottom center;
 	background-repeat:no-repeat;
 	background-color:#FFF;
 	min-height: 20rem;
-	background-image:url('/images/frame/watercolorBG_1280_2_SM.jpg');
+	background-image:url('/images/watercolorBG_1280_2_SM.jpg');
 	background-size:640px;
 	@media #{$medium-only} {
-		background-image:url('/images/frame/watercolorBG_2048_2_MD.jpg');
+		background-image:url('/images/watercolorBG_2048_2_MD.jpg');
 		background-size:1024px;
 	}
 	@media #{$large-only} {
-		background-image:url('/images/frame/watercolorBG_2880_2_LG.jpg');
+		background-image:url('/images/watercolorBG_2880_2_LG.jpg');
 		background-size:1440px;
 	}
 	@media #{$xlarge-up} {
-		background-image:url('/images/frame/watercolorBG_3840_2_XL.jpg');
+		background-image:url('/images/watercolorBG_3840_2_XL.jpg');
 		background-size:1920px;
 	}	
 }
@@ -1226,6 +1146,7 @@ main{
 		display:none;
 		& li{
 			padding:0;
+			margin-bottom:0;
 		}
 		&  > ul:nth-child(1) > li:nth-child(1) > div:nth-child(1) > a:nth-child(1){
 			padding-top:.375rem;
@@ -1267,7 +1188,7 @@ main{
 	}
 	text-align:left;
 	background-color:$white;
-	z-index:9;
+	z-index:99;
 	.opened+&{
 		left:0;
 		right:0;
@@ -1481,10 +1402,10 @@ main{
     display: inline-block;
 }
 #flag51:not(.US){
-    background: transparent url("/images/international/csg-51642e22d5dfb.png") no-repeat scroll 0% 0%;
+    background: transparent url("/images/csg-51642e22d5dfb.png") no-repeat scroll 0% 0%;
 }
 #flag51.US{
-    background: transparent url("/images/international/csg-us.png") no-repeat scroll 0% 0%;
+    background: transparent url("/images/csg-us.png") no-repeat scroll 0% 0%;
 }
 $col_1: "AD", "AE", "AF", "AG", "AI", "AL", "AM", "AN", "AO", "AQ", "AR", "AS", "AT", "AU", "AW", "AX", "AZ", "BA", "BB", "BD", "BE", "BF", "BG", "BH", "BI", "BJ", "BL", "BM", "BN", "BO", "BQ", "BR", "BS", "BT", "BV", "BW", "BY", "BZ", "CA", "CA21x14SUi", "CC", "CD", "CF", "CG", "CH", "CI", "CK", "CL", "CM", "CN", "CO", "CR", "CS", "CU", "CV", "CW", "CX", "CY", "CZ", "DE", "DJ", "DK", "DM", "DO", "DZ", "EC", "EE", "EG", "EH", "ER", "ES";
 $col_2: "ET", "EU", "FI", "FJ", "FK", "FM", "FO", "FR", "GA", "GB", "GD", "GE", "GF", "GG", "GH", "GI", "GL", "GM", "GN", "GP", "GQ", "GR", "GS", "GT", "GU", "GW", "GY", "HK", "HM", "HN", "HR", "HT", "HU", "IC", "ID", "IE", "IL", "IM", "IN", "IO", "IQ", "IR", "IS", "IT", "JE", "JM", "JO", "JP", "KE", "KG", "KH", "KI", "KM", "KN", "KP", "KR", "KW", "KY", "KZ", "LA", "LB", "LC", "LI", "LK", "LR", "LS", "LT", "LU", "LV", "LY", "MA";
@@ -1493,7 +1414,7 @@ $col_4: "SV", "SX", "SY", "SZ", "TC", "TD", "TF", "TG", "TH", "TJ", "TK", "TL", 
 $flags: $col_1, $col_2, $col_3, $col_4;
 
 #flag51{
-    background: transparent url("/images/international/csg-51642e22d5dfb.png") 0 0 no-repeat;
+    background: transparent url("/images/csg-51642e22d5dfb.png") 0 0 no-repeat;
     @for $y from 0 to length($flags){
       @for $x from 0 to length(nth($flags, $y + 1)){
         &.#{nth(nth($flags, $y + 1), $x + 1)}{
@@ -1513,14 +1434,11 @@ $flags: $col_1, $col_2, $col_3, $col_4;
 @media #{$small-only} {    
     body.stickyHeader{
       padding-top:$headerBottomMargin+$smallScreenHeaderHeight;
-      &.showingWelcome{
-      	padding-top:$headerBottomMargin+$smallScreenHeaderHeight+$smallScrenObnoxHeight;
-      }
     }
     body.mobileMenuOpen.stickyHeader{
     	padding-top:0
     }
-    .stickyHeader header{
+    .stickyHeader header#site-header{
       position:fixed;
       top:0;
       left:0;
@@ -1529,12 +1447,12 @@ $flags: $col_1, $col_2, $col_3, $col_4;
       transition: -webkit-transform .25s;
       transition: transform .25s;
     }
-    .stickyHeader.mobileMenuOpen header{
+    .stickyHeader.mobileMenuOpen header#site-header{
     	position:absolute;
     }
-    .stickyHeader header.offScreen{
+    .stickyHeader header#site-header.offScreen{
       -webkit-transform:translateY(-$smallScreenHeaderHeight);
       transform:translateY(-$smallScreenHeaderHeight);
       /* might need to increase given iOS transparency */
     }
-}    
+}

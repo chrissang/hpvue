@@ -37,11 +37,18 @@ main.uncommonCollection .unco{
 }
 /* */
 #altImages,
-.small-2 #youtube_link{
+.small-2 #youtube_link,
+.small-2 #pdf_link{
 	margin-top:.75rem;
 	@media #{$small-only} {
 		margin-bottom:1.125rem;
 	}
+}
+#viewLifeSize{
+    display:none;
+    @media #{$medium-up} {
+        display: inline;
+    }
 }
 /* the maker */
 #artistBlock{
@@ -203,7 +210,8 @@ form#registry{
 .no-cssfilters-magic .mz-thumb{
 	background-color:#FFF!important;
 }
-#youtube_link{
+#youtube_link,
+#pdf_link{
 	width:64px;
 	box-sizing:content-box!important;
 	
@@ -480,8 +488,7 @@ div[id^='personalize_']{
 		font-family: noto sans;
 		font-size: 0.875rem!important;
 	}	
-}
-.close_modal{
+    & .close_modal{
 	position: absolute;
 	right: -1rem;
 	top: 0px;
@@ -490,13 +497,12 @@ div[id^='personalize_']{
 	top: -3rem;
 	line-height:4rem;
 	z-index:9;
-	&:hover{
-		cursor:pointer;
-	}
-	@media #{$large-up} {
-		right:-1.75rem;
-	}
+	   @media #{$large-up} {
+           right:-1.75rem;
+	   }
+    }
 }
+
 /* */
 
 
@@ -550,6 +556,9 @@ div[id^='personalize_']{
 .soldOutDiscontinued img{opacity:.4!important}
 
 
+#candidContainer{
+	padding-bottom: calc(3rem - 26px);
+}
 
 #alsoBy,
 #recentlyViewedItemPage{
@@ -596,6 +605,9 @@ div[id^='personalize_']{
 	background-color:$offwhite;
 	top:calc(50% - 25px)
 }
+#altImages:not(.swiper-container-horizontal) .swiper-slide{
+	max-width:15%;
+}
 #altImages .swiper-button-prev,
 #altImages .swiper-button-next{
 	&.swiper-button-prev{
@@ -621,19 +633,23 @@ div[id^='personalize_']{
 }
 #playerContainer{
 	display:none;
-    height: 0;
-    padding-bottom: 100%;
     background-color: #000;
+    position: relative;
+    width:100%;
     clear: both;
     margin-left: .375rem;
     margin-right: .375rem;
 }
+#playerContainer:after {
+  content: "";
+  display: block;
+  padding-bottom: 100%;
+}
 iframe#player{
 	display:none;
-	transform: translateY(-50%);
-    width: calc(100% - 1.5rem);
+    width:100%;
+    height: 100%;
     position: absolute;
-    top: 44%;
 }
 
 .banner{
@@ -667,4 +683,25 @@ iframe#player{
 		top: 0;
 		background: linear-gradient(to right bottom, $active-light-mix 50%, transparent 50%)
 	}
+}
+
+.comingSoon{
+    padding:1.5rem;
+    background-color:$active-light-mix;
+    margin:-.75rem -.375rem .75rem;
+    background-image: url('/images/edge.png');
+    background-repeat: repeat-x;
+    background-position: bottom center;
+    p{
+        color:#FFF;
+        text-transform: uppercase;
+        letter-spacing:.25em;
+        margin-bottom:.25rem;
+    }
+    h2{
+        margin-bottom: 0;
+    }
+    @media #{$medium-up} {
+        margin:-.75rem 0 .25rem;
+    }
 }

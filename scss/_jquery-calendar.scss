@@ -1,0 +1,81 @@
+.ui-datepicker.ui-widget{
+    background-color:#FFF;
+    border:2px solid $active-light-mix;
+    padding:.75rem;
+    & .ui-datepicker-title{
+        text-align: center;
+        line-height: 1;
+        margin: 0 1.5em .5rem;
+    }
+    & a[title="Prev"]{
+        float:left;
+        @extend [class^="icon-"];
+        @extend .icon-caret_left;
+    }
+    & a[title="Next"]{
+        float:right;
+        @extend [class^="icon-"];
+        @extend .icon-caret_right;
+        text-align:right;
+    }
+    & a[title="Prev"] span,
+    & a[title="Next"] span{
+        display:none;
+    }
+}
+
+.ui-widget-header{
+    background:transparent!important;
+}
+.ui-state-default,
+.ui-widget-content .ui-state-default,
+.ui-widget-header .ui-state-default{
+    background-color:#FFF!important;
+    border:none!important;
+}
+table.ui-datepicker-calendar tr,
+table.ui-datepicker-calendar tr.even,
+table.ui-datepicker-calendar tr.alt,
+table.ui-datepicker-calendar tr:nth-of-type(2n){
+    background-color:#FFF;
+}
+.ui-state-default{
+    text-align: center!important;
+}
+.ui-datepicker-calendar{
+    border:none;
+}
+.ui-widget-header{
+    border:none!important;
+}
+.ui-datepicker .ui-datepicker-title select.ui-datepicker-month,
+.ui-datepicker .ui-datepicker-title select.ui-datepicker-year{
+    width:calc(49% - .375rem);
+    font-family:$font-family-sans-serif;
+    font-size:.875rem;
+}
+.ui-datepicker select:nth-child(1){
+    margin-right:.75rem!important;
+}
+.ui-datepicker a.ui-datepicker-prev,
+.ui-datepicker a.ui-datepicker-next{
+    top:50%;
+    transform:translateY(-50%);
+    border:1px solid transparent;
+}
+.ui-datepicker .ui-datepicker-prev.ui-state-hover,
+.ui-datepicker .ui-datepicker-next.ui-state-hover{
+    background:none!important;
+}
+a.ui-state-default:not(:hover){
+    background-image:none!important;
+}
+/* current date*/
+a.ui-state-highlight{
+    font-weight: bold!important;
+}
+/* selected date */
+.ui-widget-content a.ui-state-default.ui-state-active{
+    background-color:$active!important;
+    color:#FFF!important;
+}

@@ -1,41 +1,9 @@
-/*
-  #tinybox{
-    left:50%!important;
-    transform: translateX(-50%)!important;
-    top:2rem!important;
-    @media #{$small-only} {
-    	height:auto;
-  	}
-  }
-  */
   #tinymask,
   #tinybox{
-  	@media #{$small-only} {
+  	@media only screen and (max-width:40em) {
 		display:none!important;
   	}
   }
-  /*
-  #tinybox,
-  #tinycontent, 
-  #modal{
-    width:100%!important;
-    max-width:45rem!important;
-    display:block;
-  }
-  #tinycontent #language{
-    left:auto!important;
-    right:10px!important;
-  }
-  .Hebrew #tinycontent #language,
-  .Arabic #tinycontent #language,
-  .Urdu #tinycontent #language{
-  	right:auto!important;
-    left:10px!important;
-  }
-  #tinycontent #subheadline{
-    margin-right:90px!important;
-  }
-  */
   #tinycontent{
   	box-sizing:content-box;
   }
@@ -43,7 +11,7 @@
     background:none;
   }
   #tinycontent #button button{
-    background-color: $active;
+    background-color: #048D8A;
     font-size:1rem;
   }
   #tinycontent #button button::after,

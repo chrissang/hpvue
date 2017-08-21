@@ -1,0 +1,93 @@
+.br-sf-widget{
+	width:20%;
+	float:left;
+	padding:0 .375rem;
+}
+
+.br-sf-widget-merchant-img{
+    border: 1px solid $offwhite;
+    margin-bottom: .25rem;
+}
+
+
+
+.br-sf-widget-merchant-popup-title{
+    @extend h2;
+}
+
+
+.br-related-heading,
+.br-found-heading{
+    @extend h3;
+}
+
+.br-found-heading{
+    margin-top:2rem
+}
+
+.br-sf-widget-merchant-title{
+    @extend h4;
+    text-transform:capitalize;
+}
+
+.br-sf-widget-merchant-desc{
+    @extend .body-small;
+}
+
+
+.br-rp-qv-show{
+    @extend .reveal-modal;
+    border:none;
+    visibility: visible;
+}
+.br-sf-widget-merchant-popup-close{
+	position:absolute;
+	top:.75rem;
+	right:.75rem;
+}
+.br-sf-widget-merchant-popup-close a{
+	text-indent:-9999px;
+}
+.br-sf-widget-merchant-popup-img{
+    margin-bottom:.75rem;
+}
+
+.br-related-query{
+	display:inline;
+	margin-right:1rem;
+}
+
+.br-sf-widget-merchant-qv a,
+.br-related-query-link{
+    font-size: .9375rem;
+    /*text-decoration:underline!important;*/
+
+    text-decoration: none;
+    background-image: -webkit-linear-gradient(top, #a2d5d4 0, #a2d5d4 100%);
+    background-image: linear-gradient(to bottom, #a2d5d4 0, #a2d5d4 100%);
+    background-position: 0 98%;
+    background-repeat: repeat-x;
+    background-size: 1px 2px;
+    border-bottom: 0;
+    color: #4C463F;
+    transition: all .5s;
+
+
+
+    text-transform:lowercase;
+    white-space: nowrap;
+}
+.br-sf-widget-merchant-qv a{
+    font-size: .75rem;
+}
+
+.br-sf-widget-merchant-popup-desc{
+/* body */
+    @extend .body;
+}
+
+.br-sf-widget-merchant-popup-view a{
+    @extend button;
+    color:#FFF!important;
+    line-height: 1.75rem;
+}

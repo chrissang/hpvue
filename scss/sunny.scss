@@ -1,0 +1,36 @@
+@import "settings";
+
+//@import "foundation";
+
+
+// Or selectively include components
+@import
+   "foundation/components/accordion",
+   "foundation/components/block-grid",
+   "foundation/components/buttons",
+   "foundation/components/forms",
+   "foundation/components/grid",
+   "foundation/components/pagination",
+   "foundation/components/reveal",
+   "foundation/components/tables",
+   "foundation/components/tabs",
+   "foundation/components/tooltips",
+   "foundation/components/type",
+   "foundation/components/offcanvas",
+   "foundation/components/visibility";
+//@import "custom";
+@import
+	"palette",
+	"svg-animations",
+	"typography",
+	"icon-font",
+	"forms",
+	"powerreviews",
+	"header",
+	"productcards",
+	"borderfreemodal",
+	"swiper",
+	"itemPage",
+	"filter-and-sort",
+	"wishlist",
+    "sunny-styles";

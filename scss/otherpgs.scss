@@ -1,0 +1,108 @@
+$numImages: 4;
+$showTime: 3;
+$fadeTime: 1;
+$totalFade: ($showTime+$fadeTime)*$numImages;
+@keyframes cf4FadeInOut {
+    0.00%	{opacity:1;}
+    #{$showTime / $totalFade*100%}	{opacity:1;}
+    #{1/$numImages*100%}	{opacity:0;}
+    #{100% - ($fadeTime/$totalFade*100%)}	{opacity:0;}
+    100.00%	{opacity:1;}
+}
+.fadein img{
+    animation: cf4FadeInOut #{$numImages*$showTime}s infinite;
+    position: absolute;
+    left: 0; 
+}
+@for $i from 1 through $numImages{
+    .fadein img:nth-of-type(#{$i}) {
+    animation-delay: #{$numImages*$showTime - $i*$showTime}s;
+    }
+}
+main p,
+main li,
+main h2,
+blockquote cite{
+	font-size:.75rem;
+	line-height:1rem;
+}
+main p,
+blockquote{
+	margin-bottom:.5rem;
+	color:#333;
+}
+main h1,
+main h2{
+	color:#0083AA;
+}
+.fadein{
+    position:relative;
+    padding-bottom:37.5%;
+}
+#dotBox,
+#dotted{
+    border:1px dashed #0083a9;
+}
+#dotted{
+    border-left:none;
+    border-right:none;
+    border-bottom:none;
+}
+#dotBox{
+    border-left:none;
+    border-top:none;
+    background-color:#FFF;
+    height:1rem;
+    width:1rem;
+    transform:rotate(45deg);
+    margin-top:-.5rem;
+    margin-left:3rem;
+}
+#dottedBump{
+    border-bottom:1px dashed #0083a9;
+    position:relative;
+}
+#dottedBump span{
+    position:relative;
+    z-index:1;
+}
+#dottedBump span:before{
+    content:'';
+    border-right:1px dashed #0083a9;
+    border-bottom:1px dashed #0083a9;
+    background-color:#FFF;
+    height:1rem;
+    width:1rem;
+    transform:rotate(45deg);
+    position:relative;
+    bottom:-1.5rem;
+    left:3rem;
+    z-index:0;
+    display:block;
+}
+.charity.row{
+    margin:3rem auto;
+}
+.charity .columns{
+    border-left:1px dotted black;
+    border-right:1px dotted black;
+    font-size:1rem;
+}
+.charity .medium-text-right,
+.charity .small-only-text-center{
+    border:0;
+}
+.charity .small-only-text-center{
+    color:#0083a9;
+    font-size:1.5rem;
+}
+@media screen and (max-width:40em){
+	.twoCssColumns{
+        -moz-column-count: 1;
+        -moz-column-gap: 0;
+        -webkit-column-count: 1;
+        -webkit-column-gap: 0;
+        column-count: 1;
+        column-gap: 0;
+    }
+}

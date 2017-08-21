@@ -1,0 +1,160 @@
+@keyframes cf4FadeInOut {
+  0.00% {
+    opacity: 1;
+  }
+  18.75% {
+    opacity: 1;
+  }
+  25% {
+    opacity: 0;
+  }
+  93.75% {
+    opacity: 0;
+  }
+  100.00% {
+    opacity: 1;
+  }
+}
+/* line 12, ../scss/otherpgs.scss */
+.fadein img {
+  animation: cf4FadeInOut 12s infinite;
+  position: absolute;
+  left: 0;
+}
+
+/* line 18, ../scss/otherpgs.scss */
+.fadein img:nth-of-type(1) {
+  animation-delay: 9s;
+}
+
+/* line 18, ../scss/otherpgs.scss */
+.fadein img:nth-of-type(2) {
+  animation-delay: 6s;
+}
+
+/* line 18, ../scss/otherpgs.scss */
+.fadein img:nth-of-type(3) {
+  animation-delay: 3s;
+}
+
+/* line 18, ../scss/otherpgs.scss */
+.fadein img:nth-of-type(4) {
+  animation-delay: 0s;
+}
+
+/* line 22, ../scss/otherpgs.scss */
+main p,
+main li,
+main h2,
+blockquote cite {
+  font-size: .75rem;
+  line-height: 1rem;
+}
+
+/* line 29, ../scss/otherpgs.scss */
+main p,
+blockquote {
+  margin-bottom: .5rem;
+  color: #333;
+}
+
+/* line 34, ../scss/otherpgs.scss */
+main h1,
+main h2 {
+  color: #0083AA;
+}
+
+/* line 38, ../scss/otherpgs.scss */
+.fadein {
+  position: relative;
+  padding-bottom: 37.5%;
+}
+
+/* line 42, ../scss/otherpgs.scss */
+#dotBox,
+#dotted {
+  border: 1px dashed #0083a9;
+}
+
+/* line 46, ../scss/otherpgs.scss */
+#dotted {
+  border-left: none;
+  border-right: none;
+  border-bottom: none;
+}
+
+/* line 51, ../scss/otherpgs.scss */
+#dotBox {
+  border-left: none;
+  border-top: none;
+  background-color: #FFF;
+  height: 1rem;
+  width: 1rem;
+  transform: rotate(45deg);
+  margin-top: -.5rem;
+  margin-left: 3rem;
+}
+
+/* line 61, ../scss/otherpgs.scss */
+#dottedBump {
+  border-bottom: 1px dashed #0083a9;
+  position: relative;
+}
+
+/* line 65, ../scss/otherpgs.scss */
+#dottedBump span {
+  position: relative;
+  z-index: 1;
+}
+
+/* line 69, ../scss/otherpgs.scss */
+#dottedBump span:before {
+  content: '';
+  border-right: 1px dashed #0083a9;
+  border-bottom: 1px dashed #0083a9;
+  background-color: #FFF;
+  height: 1rem;
+  width: 1rem;
+  transform: rotate(45deg);
+  position: relative;
+  bottom: -1.5rem;
+  left: 3rem;
+  z-index: 0;
+  display: block;
+}
+
+/* line 83, ../scss/otherpgs.scss */
+.charity.row {
+  margin: 3rem auto;
+}
+
+/* line 86, ../scss/otherpgs.scss */
+.charity .columns {
+  border-left: 1px dotted black;
+  border-right: 1px dotted black;
+  font-size: 1rem;
+}
+
+/* line 91, ../scss/otherpgs.scss */
+.charity .medium-text-right,
+.charity .small-only-text-center {
+  border: 0;
+}
+
+/* line 95, ../scss/otherpgs.scss */
+.charity .small-only-text-center {
+  color: #0083a9;
+  font-size: 1.5rem;
+}
+
+@media screen and (max-width: 40em) {
+  /* line 100, ../scss/otherpgs.scss */
+  .twoCssColumns {
+    -moz-column-count: 1;
+    -moz-column-gap: 0;
+    -webkit-column-count: 1;
+    -webkit-column-gap: 0;
+    column-count: 1;
+    column-gap: 0;
+  }
+}

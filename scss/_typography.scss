@@ -9,12 +9,16 @@
 }
 
 $header-font-color:$primary;
-h1, h2, h3, h4, h5, h6{
-	color:$primary!important;
-	&.header-info{
-		margin:1rem 0 .25rem 0 !important
-	}
+h1, h2, h3, h4, h5, h6, p, .body{
+	color:$primary;
 }
+
+h1, h2, h3, h4, h5, h6, p, .body{
+    .midnight &{
+	   color:$white;
+    }
+}
+
 
 .ug-PrimaryColor{
 	color:$primary!important;
@@ -61,7 +65,7 @@ h1, h2, h3, h4, h5, h6{
 		font-family:$font-family-serif;
 		font-size: 0.875rem;
 		line-height:rem-calc(20);
-		margin-bottom:.75rem;
+		margin: 0 0 .75rem 0;
 	}
 }
 @mixin pipe($pipe-spacing: .75rem) {
@@ -173,16 +177,30 @@ div > a:not(.button):not(.body-small-crumbs):focus{
 	color:initial;
 	text-decoration:none;
 }
-hr.dottedSpacer{
+hr{
+	margin: 0;
+	height: 1px;
+	background-color:$offwhite;
+	border:none;	
+}
+hr.dottedSpacer,
+hr.spacer{
+	background-color: transparent;
 	background-repeat:repeat-x;
 	background-position:center;
 	background-image:url("/images/shear_active-secondary.svg");
-	border:none;
-	margin:0;
 	height:rem-calc(9);
-	.gr &, .unco &{
+	.gr &, .unco &, .midnight &{
 		background-image:url("/images/shear_white.svg");
 	}
+}
+hr.spacer-secondary{
+	height:2px;
+	background-color:$active-light-mix;
+	margin-bottom:2rem;
+}
+hr.spacer-tertiary{
+	margin-bottom:2rem;
 }
 blockquote{
 	font-style:italic; // maybe different 'font' for italic?
@@ -193,9 +211,8 @@ blockquote::before{
 blockquote::after{
 	content:"\201D";
 }
-.body, p{
+.body, p, ul, ol, li{
 	font-family:$font-family-sans-serif;
-	color:$primary-color;
 	font-size:rem-calc(15);
 	line-height:rem-calc(24);
 	margin-bottom:.75rem;
@@ -206,7 +223,10 @@ blockquote::after{
 	}
 	*/
 }
-input[type="radio"]+label, input[type="checkbox"]+label, .moveTo label{
+ul, ol, li{
+	margin-bottom:1.25rem;
+}
+input[type="radio"]+label, input[type="checkbox"]+label{
 	color:$primary;
 	font-family:$font-family-sans-serif;
 	font-size:rem-calc(14);
@@ -216,17 +236,9 @@ input[type="radio"]:disabled+label, input[type="checkbox"]:disabled+label{
 }
 .body-small{
 	font-family:$font-family-sans-serif;	
-	font-size: rem-calc(14);
+	font-size: rem-calc(13);
 	line-height: rem-calc(18);
 	margin-bottom:.75rem;
-	@media #{$medium-up} {
-		font-size:rem-calc(13);
-		line-height:rem-calc(18);
-	}
-	@media #{$large-up} {
-		font-size:rem-calc(12);
-		line-height:rem-calc(16);
-	}
 }
 .body-small-crumbs{
     @extend .body-small;
@@ -339,11 +351,6 @@ input[type="radio"]:disabled+label, input[type="checkbox"]:disabled+label{
 		}
 		.megaMenu li &:not(:first-child){
 			border-top:2px solid $offwhite;
-			/*
-			border-image: url(/images/frame/2pxlinetexture-offwhite-sq.png) 4 repeat;
-			border-width:2px 0 0 0;
-			border-style:solid;
-			*/
 			margin-top:.875rem;
 			padding-top:.875rem;
 		}
@@ -362,11 +369,6 @@ input[type="radio"]:disabled+label, input[type="checkbox"]:disabled+label{
 		text-align:center;
 		display:block;
 		border-bottom:2px solid $offwhite;
-		/*
-		border-image: url(/images/frame/2pxlinetexture-offwhite-sq.png) 4 repeat;
-		border-width:0 0 2px 0;
-		border-style:solid;
-		*/
 		padding:.375rem 0 .875rem;
 		margin-bottom:.875rem;
 	}
@@ -460,16 +462,76 @@ input[type="radio"]:disabled+label, input[type="checkbox"]:disabled+label{
 	.row.pag .current{
 		color:$active!important;
 	}
-	.row.pag .icon-lg{
+	.row.pag .active.icon-lg{
 		color:$active!important;
+        vertical-align:middle;
 	}
 	.row.pag .inactive.icon-lg{
 		color:$inactive!important;
+        vertical-align:middle;
 		&:hover{
 			cursor:default;
 		}
 	}
 /* pagination */
+
+/* progress */
+
+	.progress{
+		display:inline-block;
+		width:1.25rem;
+		height:1.25rem;
+		text-indent:-9999px;
+		border-radius:1000px;
+		position:relative;
+		transition:background-color .5s;
+        background-color:$secondary;
+        .midnight &{
+    		background-color:$active-light-mix;
+        }
+	}
+	.progress::before{
+        transition:all .25s;
+        transition-timing-function:cubic-bezier(.01,.25,.31,1.84)
+    }
+	.progress.present{
+        background-color:$active;
+        .midnight &{
+		  background-color:#FFF;
+        }
+	}
+	.progress.future{
+		background-color:transparent;
+	}
+	.progress::before{
+		content:"";
+		border-radius:1000px;
+		position:absolute;
+		top:-2px;
+		right:-2px;
+		bottom:-2px;
+		left:-2px;
+		border:1px solid $active;
+        .midnight &{
+            border:1px solid #FFF;    
+        }
+	}
+	.progress.future::before,
+	.progress.past::before{
+		top:0;
+		right:0;
+		bottom:0;
+		left:0;
+		border-color:$secondary;
+        .midnight &{
+            border-color:$active-light-mix;    
+        }
+	}
+	.progress.future,
+    .progress.present{
+        pointer-events:none;
+    }
+/*progress*/
 table{
 	border-collapse: collapse;
 }
@@ -485,36 +547,38 @@ table tr{
 }
 table tr.even,
 table tr.alt,
-table tr:nth-of-type(2n){
-	background-color:#F9F9F9;
-}
-#tablesBrand table tr.even,
-#tablesBrand table tr.alt,
-#tablesBrand table tr:nth-of-type(2n){
-	background-color:$offwhite;
+table tr:nth-of-type(even){
+	background-color:$offwhite-light-mix;
 }
 table td,
 table th{
 	@extend .body;
 	font-weight:normal;
 }
-table:not(.noTopLabels):not(.noLabels) tr:first-child td,
-table:not(.noTopLabels):not(.noLabels) tr:first-child th,{
-	border-bottom:1px solid $offwhite;
-	@extend .body-small-caps;
-	color:$secondary;
+table thead th,
+table thead td{
+   border-bottom:1px solid $offwhite; 
 }
-table:not(.noLeftLabels):not(.noLabels) tr td:first-child,
-table:not(.noLeftabels):not(.noLabels) tr th:first-child{
-	border-right:1px solid $offwhite;
-	@extend .body-small-caps;
+table thead th:empty,
+table tbody th{
+    border-right:1px solid $offwhite;
+}
+table tbody th,
+table thead tr td,
+table thead tr th{
+  	@extend .body-small-caps;
 	color:$secondary;
 	background-color:$white;
+    font-weight: normal;
 }
 .accordion{
 	border-top:1px solid $secondary;
 	border-bottom:1px solid $secondary;
 	margin-left:0;
+}
+.accordion .accordion-navigation,
+.accordion dd{
+    border-bottom:1px solid $offwhite;
 }
 .accordion .accordion-navigation > a,
 .accordion dd > a{
@@ -523,7 +587,6 @@ table:not(.noLeftabels):not(.noLabels) tr th:first-child{
 	margin:0;
 	padding:1.5rem 0;
 	background-color:transparent;
-	border-bottom:1px solid $offwhite!important;
 	&::after{
 		font-family:"UncommonGoods";
 		content:"1";
@@ -543,6 +606,10 @@ table:not(.noLeftabels):not(.noLabels) tr th:first-child{
 .accordion .accordion-navigation.active > a::after,
 .accordion dd.active > a::after{
 	content:"3";
+}
+.accordion .accordion-navigation > .content,
+.accordion dd > .content{
+    padding-bottom:1.5rem;
 }
 input[type="checkbox"].readmore, input[type="checkbox"].readmore+label{
 	display:none;
@@ -704,4 +771,25 @@ input[type="checkbox"].readmore, input[type="checkbox"].readmore+label{
 	@media #{$large-up}{
 		width:85.71%;
 	}
+}
+
+.panel{
+    border:2px solid $active-light-mix;
+    background-color:$white;
+    padding:1.25rem;
+    margin-bottom:.75rem;
+    &.panel-secondary{
+        border:none;
+        background-color:$offwhite;
+        padding:1.25rem;
+        .icon-close{
+            padding: .75rem;
+            left: auto;
+            float: right;
+            margin: -1.125rem -1.125rem -.5rem 0;
+            +*{
+                clear:both;
+            }
+        }
+    }
 }

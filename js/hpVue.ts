@@ -1,6 +1,3 @@
-
-
-
 var displayGroupMixin = {
     methods: {
         displayGroup: function(arry) {
@@ -127,7 +124,7 @@ Vue.component('large-feature-module', {
         }
     },
     template: `
-        <section v-if="displayOn(displayGroupViewPortSize, viewportSize)" class="large-feature-module background-color-off-white">
+        <section v-if="displayOn(displayGroupViewPortSize, viewportSize)" class="large-feature-module background-color-off-white" data-module-type="LF">
             <template v-for="item in largeFeatureModulesSections">
                 <template v-if="displayOn(item.displayModuleOn, viewportSize)">
                     <div class="row fullwidth">
@@ -168,7 +165,10 @@ Vue.component('large-feature-module', {
                                             <a class="a-secondary" v-bind:href="item.headline.link" v-bind:data-description="item.headline.description" v-bind:data-itemNumber="item.item" v-bind:data-cta="item.cta.text" data-type="Headline">
                                                 <h1 v-html="item.headline.text"></h1>
                                             </a>
-                                            <a class="button btn-secondary" v-html="item.cta.text" v-bind:href="item.cta.link" v-bind:data-description="item.cta.description" v-bind:data-itemNumber="item.item" v-bind:data-cta="item.cta.text" data-type="CTA"></a>
+
+                                            <p class="body-small-override">
+                                                <a v-html="item.cta.text" v-bind:href="item.cta.link" v-bind:data-description="item.cta.description" v-bind:data-itemNumber="item.item" v-bind:data-cta="item.cta.text" data-type="CTA"></a>
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
@@ -224,7 +224,7 @@ Vue.component('small-feature-module', {
         }
     },
     template: `
-        <section v-if="displayOn(displayGroupViewPortSize, viewportSize)" class="small-feature-module background-color-white">
+        <section v-if="displayOn(displayGroupViewPortSize, viewportSize)" class="small-feature-module background-color-white" data-module-type="SF">
             <template v-if="viewportSize === 'small' || viewportSize === 'medium'">
                 <template v-for="(item, index) in smModulesSections">
                     <template v-if="displayOn(item.displayModuleOn, viewportSize)">
@@ -374,7 +374,7 @@ Vue.component('basic-story-module', {
         }
     },
     template: `
-        <section v-if="displayOn(displayGroupViewPortSize, viewportSize)" class="basic-story-module background-color-off-white">
+        <section v-if="displayOn(displayGroupViewPortSize, viewportSize)" class="basic-story-module background-color-off-white" data-module-type="BS">
             <template v-if="viewportSize === 'small'">
                 <template v-for="(item, index) in basicStoryModulesSections">
                     <div v-if="displayOn(item.displayModuleOn, viewportSize)" class="row container">
@@ -517,7 +517,7 @@ Vue.component('extended-story-module', {
         }
     },
     template: `
-        <section v-if="displayOn(displayGroupViewPortSize, viewportSize)" class="extended-story-module background-color-off-white">
+        <section v-if="displayOn(displayGroupViewPortSize, viewportSize)" class="extended-story-module background-color-off-white" data-module-type="ES">
             <template v-if="viewportSize === 'small'">
                 <template v-for="(item, index) in extendedStoryModulesSections">
                     <div v-if="displayOn(item.displayModuleOn, viewportSize)" class="row container">
@@ -661,7 +661,7 @@ Vue.component('collection-grid-module', {
         this.arrayContent6 = this.collectionGridModulesSections[5];
     },
     template: `
-        <section v-if="displayOn(displayGroupViewPortSize, viewportSize)" class="collection-grid-module background-color-off-white">
+        <section v-if="displayOn(displayGroupViewPortSize, viewportSize)" class="collection-grid-module background-color-off-white" data-module-type="CG">
             <div class="row fullwidth">
                 <div class="small-12 large-11 xlarge-10 xxlarge-8 large-centered columns">
                     <div class="row container">
@@ -762,7 +762,7 @@ Vue.component('text-link-module', {
         this.displayGroupViewPortSize = this.displayGroup(this.textLinkModuleSections);
     },
     template: `
-        <section v-if="displayOn(displayGroupViewPortSize, viewportSize)" class="text-link-module background-color-off-white">
+        <section v-if="displayOn(displayGroupViewPortSize, viewportSize)" class="text-link-module background-color-off-white" data-module-type="TL">
             <div class="row fullwidth waterColor">
                 <div class="small-12 large-11 xlarge-10 xxlarge-8 small-centered columns container">
                     <div v-if="section.text" class="row">
@@ -822,7 +822,7 @@ Vue.component('image-link-double-module', {
         this.displayGroupViewPortSize = this.displayGroup(this.imageLinkDoubleModuleSections);
     },
     template: `
-        <section v-if="displayOn(displayGroupViewPortSize, viewportSize)" class="image-link-double-module background-color-off-white">
+        <section v-if="displayOn(displayGroupViewPortSize, viewportSize)" class="image-link-double-module background-color-off-white" data-module-type="LD">
             <div class="row fullwidth waterColor">
                 <div class="small-12 large-11 xlarge-10 xxlarge-8 small-centered columns container">
                     <div v-if="section.text" class="row">
@@ -891,7 +891,7 @@ Vue.component('button-link-double-module', {
         }
     },
     template: `
-        <section v-if="displayOn(displayGroupViewPortSize, viewportSize)" class="button-link-double-module background-color-white">
+        <section v-if="displayOn(displayGroupViewPortSize, viewportSize)" class="button-link-double-module background-color-white" data-module-type="BD">
             <div class="row">
                 <div class="small-12 columns">
                     <div class="row collapse">
@@ -951,7 +951,7 @@ Vue.component('seo-link-module', {
         }
     },
     template: `
-        <section v-if="displayOn(displayGroupViewPortSize, viewportSize)" class="seoLinks text-link-module background-color-off-white">
+        <section v-if="displayOn(displayGroupViewPortSize, viewportSize)" class="seoLinks text-link-module background-color-off-white" data-module-type="TL_SEO">
             <template v-if="viewportSize === 'small'">
                 <div class="row">
                     <div class="small-12 small-centered columns container">
@@ -1076,16 +1076,66 @@ Vue.component('hp-container', {
         breakpointValue: function() {
             var size = window.getComputedStyle(document.querySelector('body'), ':before').getPropertyValue('content').replace(/\"/g, '');
             this.viewPort = size;
-            //console.log('breakpointValue ',size);
         },
         beforeDestroy() {
             window.removeEventListener('resize', this.breakpointValue);
         }
     },
     watch: {
-        // whenever question changes, this function will run
         viewPort: function () {
-            //console.log('watcher ',this.viewPort)
+            var moduleOrder = [];
+            this.$nextTick(function () {
+                var sectionsDisplayed = Array.from(document.getElementById('hp_modules').querySelectorAll('section'));
+                var alphaOrder = [];
+                var alpha = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                var counter = 0;
+
+                sectionsDisplayed.forEach((el,index) => {
+                    var anchorEl = Array.from(el.querySelectorAll('a'))
+                    var moduleType = el.getAttribute("data-module-type");
+                    var alphaChar = alpha.charAt(index);
+                    anchorEl.forEach((aTag,i) => {
+                        var linkNumber = i+1;
+                        var dataType = aTag.getAttribute("data-type");
+                        var dataDescription = aTag.getAttribute('data-description').split(' ').join('_');
+
+                        if(dataDescription != '') {
+                            dataDescription = '_'+dataDescription;
+                        }
+
+                        var trackingCode = 'hp_module_' + alphaChar + linkNumber + '_'+ dataType + '_' + moduleType + dataDescription;
+                        var trackingLink = aTag.getAttribute("href");
+
+                        var ctaText = aTag.getAttribute("data-cta") ? aTag.getAttribute("data-cta") : 'NA';
+                        var itemNumber = aTag.getAttribute("data-itemNumber") ? aTag.getAttribute("data-itemNumber") : "NA";
+                        var sectionDescription = aTag.getAttribute("data-sectionDescription") ? aTag.getAttribute("data-sectionDescription") : 'NA';
+
+                        var id = alphaChar + linkNumber + '_' + moduleType;
+                        var name = ctaText.replace(/'/g, "")+'_'+trackingLink.replace(/\/\/www.uncommongoods.com/g, '').replace("//blog.uncommongoods.com","/blog");
+                        var creative = itemNumber;
+                        var pos = sectionDescription;
+
+                        trackingLink = trackingLink.replace(/\/\/www.uncommongoods.com/g, '');
+
+                        if (trackingLink !== '' && moduleType != 'TL_SEO') {
+                            if (trackingLink.includes("//blog.uncommongoods.com")) {
+                                trackingLink = trackingLink.replace("//blog.uncommongoods.com","/blog");
+                                $(aTag).attr("onclick", `javascript: pageTracker._trackPageview('/internal`+trackingLink+`?source=`+trackingCode+`');dataLayer.push({'internalHPModuleLinkUrl':'/internal`+trackingLink+`?source=`+trackingCode+`'},{'event':'fireGTMTrackHPModulePageView'});onPromoClick('`+id+`', '`+name+`', '`+creative+`', '`+pos+`')`);
+                            } else {
+                                $(aTag).attr("onclick", `javascript: pageTracker._trackPageview('/internal`+trackingLink+`?source=`+trackingCode+`');dataLayer.push({'internalHPModuleLinkUrl':'/internal`+trackingLink+`?source=`+trackingCode+`'},{'event':'fireGTMTrackHPModulePageView'});onPromoClick('`+id+`', '`+name+`', '`+creative+`', '`+pos+`')`);
+                            }
+                        } else if (trackingLink !== '' && moduleType === 'TL_SEO') {
+                            $(aTag).attr("onclick", `javascript: pageTracker._trackPageview('/internal`+trackingLink+`?source=`+trackingCode+`');dataLayer.push({'internalHPModuleLinkUrl':'/internal`+trackingLink+`?source=`+trackingCode+`'},{'event':'fireGTMTrackHPModulePageView'});onPromoClick('`+id+`', '`+name+`', '`+creative+`', '`+pos+`')`);
+                        } else {
+                            $(aTag).attr("onclick", `javascript: pageTracker._trackPageview('/internal`+trackingLink+`?source=`+trackingCode+`');dataLayer.push({'internalHPModuleLinkUrl':'/internal`+trackingLink+`?source=`+trackingCode+`'},{'event':'fireGTMTrackHPModulePageView'});onPromoClick('`+id+`', '`+name+`', '`+creative+`', '`+pos+`')`);
+                            $('a[href=""]').click(function (event) { // where href are blank
+                                event.preventDefault();
+                            })
+                        }
+
+                    })
+                })
+            })
         }
     },
     template: `
@@ -1101,4 +1151,56 @@ var hp_modules = new Vue({
     data: {
         hpJson: mappingOrder
     }
+})
+
+Vue.nextTick(function () {
+    var sectionsDisplayed = Array.from(document.getElementById('hp_modules').querySelectorAll('section'));
+    var alphaOrder = [];
+    var alpha = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    var counter = 0;
+
+    sectionsDisplayed.forEach((el,index) => {
+        var anchorEl = Array.from(el.querySelectorAll('a'))
+        var moduleType = el.getAttribute("data-module-type");
+        var alphaChar = alpha.charAt(index);
+        anchorEl.forEach((aTag,i) => {
+            var linkNumber = i+1;
+            var dataType = aTag.getAttribute("data-type");
+            var dataDescription = aTag.getAttribute('data-description').split(' ').join('_');
+
+            if(dataDescription != '') {
+                dataDescription = '_'+dataDescription;
+            }
+
+            var trackingCode = 'hp_module_' + alphaChar + linkNumber + '_'+ dataType + '_' + moduleType + dataDescription;
+            var trackingLink = aTag.getAttribute("href");
+
+            var ctaText = aTag.getAttribute("data-cta") ? aTag.getAttribute("data-cta") : 'NA';
+            var itemNumber = aTag.getAttribute("data-itemNumber") ? aTag.getAttribute("data-itemNumber") : "NA";
+            var sectionDescription = aTag.getAttribute("data-sectionDescription") ? aTag.getAttribute("data-sectionDescription") : 'NA';
+
+            var id = alphaChar + linkNumber + '_' + moduleType;
+            var name = ctaText.replace(/'/g, "")+'_'+trackingLink.replace(/\/\/www.uncommongoods.com/g, '').replace("//blog.uncommongoods.com","/blog");
+            var creative = itemNumber;
+            var pos = sectionDescription;
+
+            trackingLink = trackingLink.replace(/\/\/www.uncommongoods.com/g, '');
+
+            if (trackingLink !== '' && moduleType != 'TL_SEO') {
+                if (trackingLink.includes("//blog.uncommongoods.com")) {
+                    trackingLink = trackingLink.replace("//blog.uncommongoods.com","/blog");
+                    $(aTag).attr("onclick", `javascript: pageTracker._trackPageview('/internal`+trackingLink+`?source=`+trackingCode+`');dataLayer.push({'internalHPModuleLinkUrl':'/internal`+trackingLink+`?source=`+trackingCode+`'},{'event':'fireGTMTrackHPModulePageView'});onPromoClick('`+id+`', '`+name+`', '`+creative+`', '`+pos+`')`);
+                } else {
+                    $(aTag).attr("onclick", `javascript: pageTracker._trackPageview('/internal`+trackingLink+`?source=`+trackingCode+`');dataLayer.push({'internalHPModuleLinkUrl':'/internal`+trackingLink+`?source=`+trackingCode+`'},{'event':'fireGTMTrackHPModulePageView'});onPromoClick('`+id+`', '`+name+`', '`+creative+`', '`+pos+`')`);
+                }
+            } else if (trackingLink !== '' && moduleType === 'TL_SEO') {
+                $(aTag).attr("onclick", `javascript: pageTracker._trackPageview('/internal`+trackingLink+`?source=`+trackingCode+`');dataLayer.push({'internalHPModuleLinkUrl':'/internal`+trackingLink+`?source=`+trackingCode+`'},{'event':'fireGTMTrackHPModulePageView'});onPromoClick('`+id+`', '`+name+`', '`+creative+`', '`+pos+`')`);
+            } else {
+                $(aTag).attr("onclick", `javascript: pageTracker._trackPageview('/internal`+trackingLink+`?source=`+trackingCode+`');dataLayer.push({'internalHPModuleLinkUrl':'/internal`+trackingLink+`?source=`+trackingCode+`'},{'event':'fireGTMTrackHPModulePageView'});onPromoClick('`+id+`', '`+name+`', '`+creative+`', '`+pos+`')`);
+                $('a[href=""]').click(function (event) { // where href are blank
+                    event.preventDefault();
+                })
+            }
+        })
+    })
 })

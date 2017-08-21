@@ -1,7 +1,7 @@
 ul.products{
 	margin:0 -.375rem;
 	@media #{$xlarge-up} {
-		margin:0 -1rem;
+		margin:0 0 0 -1rem;
 	}
 }
 ul.products li{
@@ -9,13 +9,34 @@ ul.products li{
 	display: block;
     float: left;
     height: auto;
-    /*padding: 0px 0.625rem 1.25rem;*/
     padding:0 .375rem 1.5rem;
+	position: relative;
+	.viewListContainer {
+		position: relative;
+		max-width: 22.5rem;
+		.viewList {
+			position: absolute;
+			top: -2.75rem;
+			right:0;
+			height: 2.75rem;
+			z-index: 100;
+			padding: 0 1rem 0 1rem;
+			border: 1px solid $offwhite;
+			border-radius: 22px 22px 0 0;
+			border-bottom: 0;
+			display: flex;
+			align-items: center;
+			background-color: $white;
+			a {
+				margin: 0;
+			}
+		}
+	}
     @media #{$medium-only} {
-    	padding:0 0.625rem .75rem
+    	padding:0 0.625rem .75rem;
 	}
     @media #{$large-only} {
-    	padding:0 0.75rem .75rem
+    	padding:0 0.75rem .75rem;
 	}
 	@media #{$xlarge-up} {
 		padding:0 1rem 1rem;
@@ -28,17 +49,17 @@ ul.products li{
 								(4, 72),
 								(5, 120){
 	@media only screen and (min-width:#{$ACbreakpoint}em){
-		
+
 			ul.products li{
 				width: percentage(1/$across)!important;
-			}			
-		
+			}
+
 		@if $across == 2 {
 			ul.products li:nth-of-type(1n){
   				clear:none!important;
   			 }
 		}
-		
+
 		$i: 2;
 		@while $i <= 6 {
   			 @if $i != $across {
@@ -138,7 +159,9 @@ article.product .icon-loveIt{
 		top: 0;
 		background: linear-gradient(to right bottom, $active-light-mix 50%, transparent 50%)
 	}
-
+.comingsoonFlag{
+    @extend .customFlag;
+}
 /*
 .newFlag+.customFlag,
 .stockFlag+.customFlag{
@@ -161,7 +184,7 @@ span[class^='fontStars-']{
 }
 .fontStars-0_5::before{
 	content:"\5a\41\41\41\41";
-}	
+}
 .fontStars-1::before,
 .fontStars-1_0::before,
 .fontStars-1_1::before,
@@ -212,7 +235,7 @@ span[class^='fontStars-']{
 .fontStars-4_1::before,
 .fontStars-4_2::before{
 	content:"\55\55\55\55\41";
-}	
+}
 .fontStars-4_3::before,
 .fontStars-4_4::before,
 .fontStars-4_5::before,
@@ -226,63 +249,6 @@ span[class^='fontStars-']{
 .fontStars-5_0::before{
 	content:"\55\55\55\55\55";
 }
-
-
-
-
-/*
-figure{
-	margin:0;
-}
-
-figure img{
-	border:1px solid #e0e0e0;
-	display:block;
-	margin:auto;
-}
-figcaption{
-	max-width:200px;
-	margin-left:auto;
-	margin-right:auto;
-}
-figure .itemName, figure .itemName a, figure .itemPrice, figure .prSnippetNumberOfRatingsText{
-	line-height: 1em;
-	margin-bottom: 0.5em;
-	margin-top: 0.5em;
-	text-align:center;
-	font-size:.75rem;
-}
-figure .prSnippetNumberOfRatingsText{
-	text-align:right;
-}
-figure .itemName a{
-	text-decoration:none;
-	font-weight:bold;
-	color:$primary!important;
-}
-figure .itemPrice del{
-	margin-right:.5em;
-}
-figure .itemPrice ins{
-	margin-left:.5em;
-	text-decoration:none;
-	color:#FF4B4D;
-}
-figcaption .row.collapse{
-	width:100%!important;
-}
-figcaption .pr-stars {
-	background-image:url("/images/reviews/stars_small.png") !important;
-    background-image: url("/images/stars.svg") !important;
-    background-repeat: no-repeat!important;
-    background-size: cover!important;
-    height: 0!important;
-	margin:0!important;
-    padding: 0 0 19%!important;
-    display:block!important;
-    width:100%!important;
-}
-*/
 .pr-stars-0-sm {
     background-position: 0 0 !important;
 }
